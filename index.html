@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Crumb | Investor Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #00D9A5;
+            --bg: #000000;
+            --bg-secondary: #0a0a0a;
+            --text: #ffffff;
+            --text-muted: #888888;
+            --text-dim: #555555;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 10%;
+            position: relative;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 217, 165, 0.1);
+            border: 1px solid rgba(0, 217, 165, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .hero-sub {
+            font-size: clamp(18px, 3vw, 28px);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 60px;
+            font-weight: 300;
+        }
+
+        .hero-sub span {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 24px;
+            color: var(--text-dim);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Headers */
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        h2 span {
+            color: var(--accent);
+        }
+
+        .section-text {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--bg-secondary);
+        }
+
+        .problem-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .problem-item {
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+        }
+
+        .problem-item .icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .problem-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .problem-item p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        /* Solution */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .solution-item {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(0,217,165,0.1) 0%, rgba(0,217,165,0.02) 100%);
+            border: 1px solid rgba(0,217,165,0.2);
+            border-radius: 20px;
+        }
+
+        .solution-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .solution-item p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        /* Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .product-card {
+            padding: 40px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,217,165,0.3);
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+
+        .product-card .margin {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .product-card .margin span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .product-card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .product-card li {
+            font-size: 14px;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .product-card li::before {
+            content: '✓ ';
+            color: var(--accent);
+        }
+
+        /* Competitors */
+        .competitors-table {
+            width: 100%;
+            margin-top: 60px;
+            border-collapse: collapse;
+        }
+
+        .competitors-table th,
+        .competitors-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 14px;
+        }
+
+        .competitors-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .competitors-table .check {
+            color: var(--accent);
+        }
+
+        .competitors-table .cross {
+            color: #ff6b6b;
+        }
+
+        .competitors-table tr.highlight {
+            background: linear-gradient(90deg, rgba(0,217,165,0.15) 0%, transparent 100%);
+        }
+
+        .competitors-table tr.highlight td {
+            font-weight: 600;
+        }
+
+        /* The Ask */
+        .ask {
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
+        }
+
+        .ask-amount {
+            font-size: clamp(64px, 12vw, 140px);
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -5px;
+            line-height: 1;
+        }
+
+        .ask-equity {
+            font-size: clamp(24px, 4vw, 40px);
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        .use-of-funds {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .fund-item h4 {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .fund-item .amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 150px 10%;
+        }
+
+        .cta h2 {
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 100px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,217,165,0.3);
+        }
+
+        .founder-info {
+            margin-top: 60px;
+            color: var(--text-muted);
+        }
+
+        .founder-info strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 6%;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .use-of-funds {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .competitors-table {
+                font-size: 12px;
+            }
+
+            .competitors-table th,
+            .competitors-table td {
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">MINDFUL <span>CRUMB</span></div>
+        <a href="mailto:william@mindfulcrumb.com">Contact</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">Investor Overview</div>
+        <h1>We're not a<br>protein brand.</h1>
+        <p class="hero-sub">We're a <span>gut health company</span> that uses protein as the delivery mechanism. The gut is our second brain—we deliver top-notch nutrition for <span>maximum absorption</span>.</p>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem fade-in">
+        <div class="section-label">The Problem</div>
+        <h2>The protein industry<br>has a <span>dirty secret</span>.</h2>
+        <p class="section-text">Most protein products prioritize shelf life and taste over your health. The result? Inflammation, gut issues, and nutrients your body can't absorb.</p>
+
+        <div class="problem-list">
+            <div class="problem-item">
+                <div class="icon">🧪</div>
+                <h3>Artificial Additives</h3>
+                <p>Sweeteners, gums, and fillers linked to gut microbiome disruption</p>
+            </div>
+            <div class="problem-item">
+                <div class="icon">🌾</div>
+                <h3>Seed Oils</h3>
+                <p>Inflammatory omega-6 oils hiding in "healthy" protein products</p>
+            </div>
+            <div class="problem-item">
+                <div class="icon">⚗️</div>
+                <h3>Over-Processing</h3>
+                <p>Isolate filtration strips away lactoferrin and immunoglobulins</p>
+            </div>
+            <div class="problem-item">
+                <div class="icon">🐄</div>
+                <h3>Factory Farming</h3>
+                <p>Hormones, antibiotics, and grain-fed dairy compromise quality</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="fade-in">
+        <div class="section-label">The Solution</div>
+        <h2>One ingredient.<br><span>Maximum absorption.</span></h2>
+        <p class="section-text">Our whey protein concentrate is exactly what it sounds like: 100% grass-fed whey. Nothing else. No flavors. No sweeteners. No gums. Just protein your gut can actually use.</p>
+
+        <div class="solution-grid">
+            <div class="solution-item">
+                <h3>100% Grass-Fed</h3>
+                <p>Single ingredient from pasture-raised cows. No hormones, no antibiotics.</p>
+            </div>
+            <div class="solution-item">
+                <h3>Dry Spray Filtration</h3>
+                <p>Preserves maximum nutritional value without harsh chemical processing.</p>
+            </div>
+            <div class="solution-item">
+                <h3>Concentrate, Not Isolate</h3>
+                <p>Retains lactoferrin and immunoglobulins—bioactives lost in isolate processing.</p>
+            </div>
+            <div class="solution-item">
+                <h3>Lab Tested</h3>
+                <p>25g protein per serving. Full amino acid profile verified.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market -->
+    <section class="fade-in">
+        <div class="section-label">Market Opportunity</div>
+        <h2>A <span>$100B+</span> market<br>experiencing a revolution.</h2>
+        <p class="section-text">Clean-label is the fastest-growing segment in nutrition. Consumers are waking up—and they're willing to pay for quality.</p>
+
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">$113B</div>
+                <div class="stat-label">Protein Market by 2030</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">15%</div>
+                <div class="stat-label">Clean Label CAGR</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1 in 2</div>
+                <div class="stat-label">Consumers Reducing Processed Food</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">68%</div>
+                <div class="stat-label">Will Pay More for Clean</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traction -->
+    <section class="problem fade-in">
+        <div class="section-label">Traction</div>
+        <h2>Early validation.<br><span>Real demand.</span></h2>
+        <p class="section-text">Since October 2025, we've proven product-market fit through D2C sales and B2B events. Growth is constrained only by marketing spend.</p>
+
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">4.8★</div>
+                <div class="stat-label">Website Rating</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">758</div>
+                <div class="stat-label">Five-Star Reviews</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">20%</div>
+                <div class="stat-label">Repeat Purchase Rate</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">61%</div>
+                <div class="stat-label">Gross Margin (Protein)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="fade-in">
+        <div class="section-label">Products</div>
+        <h2>Premium products.<br><span>Strong margins.</span></h2>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>Whey Protein Concentrate</h3>
+                <div class="price">€35</div>
+                <div class="margin">Margin: <span>61%</span> (ex-VAT)</div>
+                <ul>
+                    <li>100% Grass-fed, single ingredient</li>
+                    <li>Dry spray filtration</li>
+                    <li>25g protein per serving</li>
+                    <li>Unflavored—add to any recipe</li>
+                </ul>
+            </div>
+            <div class="product-card">
+                <h3>Protein Cappuccino RTD</h3>
+                <div class="price">€5</div>
+                <div class="margin">Margin: <span>14% → 39%</span> at scale</div>
+                <ul>
+                    <li>Proprietary unreplicable recipe</li>
+                    <li>"Starbucks-level" experience</li>
+                    <li>Served hot in retail locations</li>
+                    <li>300-1,000 drinks/week per location</li>
+                </ul>
+            </div>
+            <div class="product-card">
+                <h3>Crumb Balls</h3>
+                <div class="price">€4</div>
+                <div class="margin">Margin: <span>35%</span> (ex-VAT)</div>
+                <ul>
+                    <li>Portable protein snacks</li>
+                    <li>Clean-label ingredients</li>
+                    <li>No artificial additives</li>
+                    <li>Perfect for on-the-go</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitors -->
+    <section class="fade-in">
+        <div class="section-label">Competitive Landscape</div>
+        <h2>No EU competitor<br>does what <span>we do</span>.</h2>
+        <p class="section-text">Major players prioritize scale and price. We prioritize your gut.</p>
+
+        <table class="competitors-table">
+            <tr>
+                <th>Brand</th>
+                <th>HQ</th>
+                <th>Grass-Fed</th>
+                <th>No Additives</th>
+                <th>Clean Label</th>
+            </tr>
+            <tr>
+                <td>MyProtein</td>
+                <td>UK</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+            </tr>
+            <tr>
+                <td>Prozis</td>
+                <td>Portugal</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+            </tr>
+            <tr>
+                <td>Zumub</td>
+                <td>Portugal</td>
+                <td>Varies</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+            </tr>
+            <tr>
+                <td>BioTech USA</td>
+                <td>Hungary</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+            </tr>
+            <tr>
+                <td>Bulk</td>
+                <td>UK</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+            </tr>
+            <tr>
+                <td>Foodspring</td>
+                <td>Germany</td>
+                <td class="check">✓</td>
+                <td class="cross">✗</td>
+                <td>Partial</td>
+            </tr>
+            <tr>
+                <td>ESN</td>
+                <td>Germany</td>
+                <td>Some SKUs</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+            </tr>
+            <tr class="highlight">
+                <td>Mindful Crumb</td>
+                <td>Portugal</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="fade-in">
+        <div class="section-label">2026 Roadmap</div>
+        <h2>Portugal first.<br><span>Then Europe.</span></h2>
+        <p class="section-text">Portugal has the highest coffee shop density in Western Europe (41.6 per 10,000 people). Our RTD cappuccino is built for this market.</p>
+
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Cities: Lisbon, Porto, Algarve, Braga</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">€12.2K</div>
+                <div class="stat-label">Target Monthly Revenue (M18)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1,000</div>
+                <div class="stat-label">Target Customers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">M12</div>
+                <div class="stat-label">Break-Even Target</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="problem fade-in">
+        <div class="section-label">Founder</div>
+        <h2>20+ years of<br><span>nutrition expertise.</span></h2>
+
+        <div style="margin-top: 40px;">
+            <h3 style="font-size: 28px; margin-bottom: 10px;">William Kamar</h3>
+            <p style="color: var(--accent); font-size: 16px; margin-bottom: 30px;">Founder & CEO • ISSA Certified Trainer</p>
+            <p class="section-text" style="max-width: 800px;">10,000+ hours of nutrition research. Expertise in functional nutrition, blood type diets, metabolism, and insulin resistance. Previous venture: VivaThrive (personalized meal planning). Mission: Extending life expectancy through clean, science-backed nutrition.</p>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 60px;">
+            <div class="stat">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years in Fitness & Nutrition</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Hours of Research</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">€100K</div>
+                <div class="stat-label">Capital Invested to Date</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Ask -->
+    <section class="ask fade-in">
+        <div class="section-label">The Ask</div>
+        <div class="ask-amount">€100,000</div>
+        <div class="ask-equity">for 20% equity</div>
+        <p style="color: var(--text-muted); margin-top: 20px;">Post-money valuation: €500,000</p>
+
+        <div class="use-of-funds">
+            <div class="fund-item">
+                <h4>Marketing</h4>
+                <div class="amount">€35-40K</div>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Influencers, paid ads, events</p>
+            </div>
+            <div class="fund-item">
+                <h4>Inventory</h4>
+                <div class="amount">€30K</div>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Scale production, bulk ingredients</p>
+            </div>
+            <div class="fund-item">
+                <h4>Operations</h4>
+                <div class="amount">€30K</div>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Distribution, fulfillment, retail</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta fade-in">
+        <h2>Join us in redefining<br><span>nutrition for longevity.</span></h2>
+        <a href="mailto:william@mindfulcrumb.com" class="cta-button">Let's Talk</a>
+        <div class="founder-info">
+            <p><strong>William Kamar</strong></p>
+            <p>william@mindfulcrumb.com</p>
+            <p style="margin-top: 20px;">
+                <a href="https://mindfulcrumb.com" target="_blank">mindfulcrumb.com</a> •
+                <a href="https://instagram.com/mindfulcrumb" target="_blank">@mindfulcrumb</a>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Mindful Crumb • Porto, Portugal</p>
+        <p style="margin-top: 10px;"><a href="https://mindfulcrumb.com">mindfulcrumb.com</a></p>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
