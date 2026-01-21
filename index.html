@@ -564,6 +564,57 @@
         footer { padding: 5rem 3rem; text-align: center; border-top: 1px solid var(--subtle); }
         footer p { font-size: 0.7rem; color: var(--muted); opacity: 0.6; }
 
+        /* Testimonials */
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .testimonial-card {
+            background: var(--faint); border-radius: 8px; padding: 2rem;
+            border: 1px solid var(--subtle); position: relative;
+        }
+        .testimonial-card::before {
+            content: '"'; position: absolute; top: 1rem; left: 1.5rem;
+            font-size: 3rem; color: var(--beige); opacity: 0.3; font-family: Georgia, serif; line-height: 1;
+        }
+        .testimonial-quote { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; padding-top: 1rem; }
+        .testimonial-author { font-size: 0.8rem; font-weight: 500; color: var(--cream); }
+
+        /* Risk Grid */
+        .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .risk-card { background: var(--faint); border-radius: 8px; padding: 2rem; border: 1px solid var(--subtle); }
+        .risk-title { font-size: 0.95rem; font-weight: 500; color: var(--cream); margin-bottom: 0.5rem; }
+        .risk-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+        .risk-mitigation { font-size: 0.8rem; color: var(--beige); line-height: 1.6; }
+        .risk-mitigation::before { content: '→ '; }
+
+        /* Cap Table */
+        .cap-table { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center; margin-top: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cap-column { text-align: center; }
+        .cap-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+        .cap-item { margin-bottom: 0.5rem; }
+        .cap-name { font-size: 0.9rem; color: var(--cream); }
+        .cap-percent { font-size: 1.5rem; font-weight: 200; color: var(--beige); }
+        .cap-arrow { font-size: 2rem; color: var(--beige); opacity: 0.5; }
+        .cap-note { font-size: 0.75rem; color: var(--muted); margin-top: 2rem; text-align: center; }
+
+        /* Unit Economics */
+        .economics-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 3rem; }
+        .economics-item { background: var(--faint); border-radius: 8px; padding: 1.5rem; text-align: center; }
+        .economics-value { font-size: 1.5rem; font-weight: 200; color: var(--beige); margin-bottom: 0.5rem; }
+        .economics-label { font-size: 0.7rem; color: var(--muted); line-height: 1.4; }
+
+        /* Responsive for new components */
+        @media (max-width: 1100px) {
+            .economics-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .risk-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .economics-grid { grid-template-columns: repeat(2, 1fr); }
+            .cap-table { grid-template-columns: 1fr; gap: 1rem; }
+            .cap-arrow { transform: rotate(90deg); }
+        }
+
         /* Responsive - improved */
         @media (max-width: 1100px) {
             .timeline { grid-template-columns: repeat(2, 1fr); }
@@ -898,6 +949,30 @@
             </div>
         </div>
         <p class="small reveal reveal-delay-3" style="margin-top: 2rem;"><span class="accent">Coming soon:</span> Protein Brio — sourdough brioche with 24hr fermentation. Production partnership with Terracota by Daju.</p>
+
+        <!-- Unit Economics -->
+        <div class="economics-grid reveal reveal-delay-4">
+            <div class="economics-item">
+                <div class="economics-value">€25-35</div>
+                <div class="economics-label">Blended CAC</div>
+            </div>
+            <div class="economics-item">
+                <div class="economics-value">€35</div>
+                <div class="economics-label">Avg Order Value</div>
+            </div>
+            <div class="economics-item">
+                <div class="economics-value">€85-105</div>
+                <div class="economics-label">Est. LTV (3 orders)</div>
+            </div>
+            <div class="economics-item">
+                <div class="economics-value accent">2.5-4x</div>
+                <div class="economics-label">LTV:CAC Ratio</div>
+            </div>
+            <div class="economics-item">
+                <div class="economics-value accent">1st</div>
+                <div class="economics-label">Payback (1st order)</div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -926,6 +1001,64 @@
             </div>
         </div>
         <p class="body-text reveal reveal-delay-3" style="margin-top: 3rem; max-width: 500px;">Growth is constrained by marketing spend, not demand. With investment, we unlock the acquisition engine.</p>
+
+        <!-- Customer Testimonials -->
+        <div class="testimonial-grid reveal reveal-delay-4">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">Simply amazing!!! Never thought a healthy snack could taste better than dessert. Mindful Crumb is definitely my go to snack. I guess everyday is cheat day now.</p>
+                <p class="testimonial-author">Gustavo Bandeira</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">Amazing! These brownies are on another level. Combines the best of a sweet and the healthy you are looking for. 100% recommended.</p>
+                <p class="testimonial-author">Orlando Peña Fernández</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">Really good brownie, tasteful, long lasting honey taste at the end. Packed with nutrients!</p>
+                <p class="testimonial-author">Cristiano Ribeiro</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Financial Snapshot -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">Financial Snapshot</span>
+        <h2 class="headline reveal reveal-delay-1">€0.4K today. <span class="accent">€12K in 18 months.</span></h2>
+        <div class="divider reveal"></div>
+
+        <div class="data-grid reveal reveal-delay-2" style="text-align: center;">
+            <div class="data-item">
+                <div class="data-value">€0.4K</div>
+                <div class="data-label">Current MRR</div>
+                <p class="small" style="margin-top: 0.5rem;">~15 customers</p>
+            </div>
+            <div class="data-item">
+                <div class="data-value accent">€6.5K</div>
+                <div class="data-label">Target MRR (M12)</div>
+                <p class="small" style="margin-top: 0.5rem;">500 customers</p>
+            </div>
+            <div class="data-item">
+                <div class="data-value accent">€12.2K</div>
+                <div class="data-label">Target MRR (M18)</div>
+                <p class="small" style="margin-top: 0.5rem;">1,000 customers</p>
+            </div>
+        </div>
+
+        <div class="data-grid reveal reveal-delay-3" style="margin-top: 4rem;">
+            <div class="data-item">
+                <div class="data-value" style="font-size: 2rem;">€3-4K</div>
+                <div class="data-label">Monthly burn rate (post-investment)</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value" style="font-size: 2rem;">18+</div>
+                <div class="data-label">Months runway with €100K</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value accent" style="font-size: 2rem;">M12</div>
+                <div class="data-label">Path to break-even</div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1260,6 +1393,46 @@
                 </div>
             </div>
         </div>
+
+        <!-- Exit Opportunities -->
+        <div class="reveal reveal-delay-3" style="margin-top: 4rem; padding: 2rem; background: var(--faint); border-radius: 8px; border: 1px solid var(--subtle);">
+            <p style="font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--beige); margin-bottom: 1rem;">Exit Landscape</p>
+            <p class="body-text" style="margin-bottom: 1rem;"><span class="accent">Comparable exits:</span> RXBAR ($600M to Kellogg's), Perfect Bar (Mondelēz), KIND ($5B to Mars)</p>
+            <p class="body-text" style="margin-bottom: 1rem;"><span class="accent">Strategic acquirers:</span> Mars, Nestlé Health Science, Glanbia, Abbott, Danone</p>
+            <p class="small">Target: Position for acquisition at €5-10M revenue run rate (3-5 year horizon)</p>
+        </div>
+    </div>
+</section>
+
+<!-- Risks & Mitigation -->
+<section>
+    <div class="section-wide">
+        <span class="label reveal">Risk Awareness</span>
+        <h2 class="headline reveal reveal-delay-1">We know what could go wrong.</h2>
+        <div class="divider reveal"></div>
+
+        <div class="risk-grid reveal reveal-delay-2">
+            <div class="risk-card">
+                <div class="risk-title">Supply Chain</div>
+                <div class="risk-desc">Single supplier dependency for grass-fed whey</div>
+                <div class="risk-mitigation">Identifying 2 backup suppliers; building 3-month inventory buffer</div>
+            </div>
+            <div class="risk-card">
+                <div class="risk-title">Competition</div>
+                <div class="risk-desc">Larger players could enter clean-label space</div>
+                <div class="risk-mitigation">We're building the category in EU before they notice; repeat customers stick; recipes are ours</div>
+            </div>
+            <div class="risk-card">
+                <div class="risk-title">Regulatory</div>
+                <div class="risk-desc">EU food compliance requirements</div>
+                <div class="risk-mitigation">Working with certified facilities; all products meet EU labeling requirements</div>
+            </div>
+            <div class="risk-card">
+                <div class="risk-title">Execution</div>
+                <div class="risk-desc">Small team, multiple growth initiatives</div>
+                <div class="risk-mitigation">Outsourced marketing (Digital Elevation); focused product line; retail partnerships handle distribution</div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1325,6 +1498,30 @@
                 <div class="data-label" style="margin: 0 auto;">Path to profitability</div>
             </div>
         </div>
+
+        <!-- Cap Table -->
+        <div class="cap-table reveal reveal-delay-3">
+            <div class="cap-column">
+                <div class="cap-label">Pre-Investment</div>
+                <div class="cap-item">
+                    <div class="cap-name">Founder</div>
+                    <div class="cap-percent">100%</div>
+                </div>
+            </div>
+            <div class="cap-arrow">→</div>
+            <div class="cap-column">
+                <div class="cap-label">Post-Investment</div>
+                <div class="cap-item">
+                    <div class="cap-name">Founder</div>
+                    <div class="cap-percent">80%</div>
+                </div>
+                <div class="cap-item">
+                    <div class="cap-name">Investor(s)</div>
+                    <div class="cap-percent">20%</div>
+                </div>
+            </div>
+        </div>
+        <p class="cap-note reveal reveal-delay-4">Clean cap table. No existing debt or convertible notes.</p>
     </div>
 </section>
 
