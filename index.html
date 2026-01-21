@@ -90,47 +90,63 @@
         /* Hero - dramatic entrance */
         #hero { text-align: center; align-items: center; min-height: 100vh; }
         #hero .display { margin-bottom: 2rem; white-space: nowrap; position: relative; }
-        #hero .subhead { max-width: none; margin: 0 auto; white-space: nowrap; }
-        #hero .tagline { white-space: nowrap; font-size: 0.75rem; letter-spacing: 0.15em; }
+        #hero .subhead {
+            max-width: none;
+            margin: 0 auto;
+            white-space: nowrap;
+            font-size: clamp(1rem, 2.2vw, 1.5rem);
+            color: var(--cream);
+            opacity: 0.7;
+        }
+        #hero .tagline {
+            white-space: nowrap;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0.5;
+        }
 
-        /* Futuristic light sweep animation */
+        /* Futuristic light sweep animation - runs once, smooth and premium */
         .light-sweep {
             position: relative;
             display: inline-block;
             background: linear-gradient(
                 90deg,
                 var(--cream) 0%,
-                var(--cream) 40%,
-                var(--beige) 50%,
-                var(--cream) 60%,
+                var(--cream) 35%,
+                rgba(255, 255, 255, 0.95) 50%,
+                var(--cream) 65%,
                 var(--cream) 100%
             );
-            background-size: 200% 100%;
+            background-size: 300% 100%;
+            background-position: 100% center;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: lightSweep 4s ease-in-out infinite;
-            animation-delay: 2s;
+            animation: lightSweep 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+            animation-delay: 1.5s;
         }
         .light-sweep .accent {
             background: linear-gradient(
                 90deg,
                 var(--beige) 0%,
-                var(--beige) 40%,
+                var(--beige) 35%,
                 #fff 50%,
-                var(--beige) 60%,
+                var(--beige) 65%,
                 var(--beige) 100%
             );
-            background-size: 200% 100%;
+            background-size: 300% 100%;
+            background-position: 100% center;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: lightSweep 4s ease-in-out infinite;
-            animation-delay: 2s;
+            animation: lightSweep 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+            animation-delay: 1.5s;
         }
         @keyframes lightSweep {
-            0%, 100% { background-position: 200% center; }
-            50% { background-position: -200% center; }
+            0% { background-position: 100% center; }
+            100% { background-position: -100% center; }
         }
         .scroll-cue {
             position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%);
@@ -353,8 +369,8 @@
             .timeline { grid-template-columns: 1fr; }
             section { padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 3rem); }
             #hero .display { font-size: clamp(2rem, 8vw, 3.5rem); white-space: normal; }
-            #hero .subhead { white-space: normal; font-size: 1rem; }
-            #hero .tagline { font-size: 0.65rem; letter-spacing: 0.08em; white-space: normal; }
+            #hero .subhead { white-space: normal; font-size: 0.95rem; opacity: 0.6; }
+            #hero .tagline { font-size: 0.6rem; letter-spacing: 0.12em; white-space: normal; }
             .competitor-dot.mc { width: 20px; height: 20px; }
             .competitor-dot.other { width: 14px; height: 14px; }
             .map-label { font-size: 0.45rem; }
@@ -374,7 +390,7 @@
 <section id="hero">
     <span class="label reveal">Investor Overview</span>
     <h1 class="display light-sweep reveal reveal-delay-1">Snacking in the <span class="accent">Future</span></h1>
-    <p class="subhead reveal reveal-delay-2">Clean-label protein for the gut-conscious generation.</p>
+    <p class="subhead reveal reveal-delay-2">Clean-label protein for the gut-conscious generation</p>
     <p class="tagline reveal reveal-delay-3" style="margin-top: 2rem;">Zero seed oils · Zero artificial · Maximum absorption</p>
     <div class="scroll-cue">
         <div class="scroll-line"></div>
