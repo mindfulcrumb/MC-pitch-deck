@@ -551,64 +551,55 @@
             font-size: 0.8rem; color: var(--muted); line-height: 1.4;
         }
 
-        /* Expansion Map */
-        /* Expansion Timeline - Simple vertical flow */
+        /* Expansion Timeline */
         .expansion-timeline {
-            margin-top: 4rem;
-            padding: 3rem 2rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
         }
         .timeline-flow {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-        }
-        .timeline-item {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.25rem 0;
             position: relative;
+            padding-left: 24px;
         }
-        .timeline-item:not(:last-child)::after {
+        .timeline-flow::before {
             content: '';
             position: absolute;
             left: 5px;
-            top: calc(50% + 12px);
+            top: 7px;
+            bottom: 7px;
             width: 1px;
-            height: calc(100% - 12px);
-            background: linear-gradient(to bottom, var(--beige), rgba(222,185,149,0.2));
+            background: linear-gradient(to bottom, var(--beige) 0%, var(--beige) 60%, rgba(222,185,149,0.3) 100%);
         }
-        .timeline-item.future:not(:last-child)::after {
-            background: rgba(222,185,149,0.2);
-            border-left: 1px dashed rgba(222,185,149,0.3);
-            width: 0;
+        .timeline-item {
+            position: relative;
+            padding: 0.75rem 0;
         }
         .timeline-dot {
+            position: absolute;
+            left: -24px;
+            top: 50%;
+            transform: translateY(-50%);
             width: 11px;
             height: 11px;
             border-radius: 50%;
             background: var(--beige);
-            flex-shrink: 0;
         }
         .timeline-item.current .timeline-dot {
-            width: 14px;
-            height: 14px;
-            box-shadow: 0 0 20px var(--beige);
+            width: 13px;
+            height: 13px;
+            left: -25px;
+            box-shadow: 0 0 15px var(--beige);
         }
         .timeline-item.future .timeline-dot {
             background: transparent;
-            border: 1px dashed rgba(222,185,149,0.5);
-        }
-        .timeline-content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
+            border: 1px dashed rgba(222,185,149,0.4);
         }
         .timeline-city {
-            font-size: 1.1rem;
+            display: block;
+            font-size: 1rem;
             font-weight: 300;
             color: var(--cream);
+            letter-spacing: 0.01em;
         }
         .timeline-item.current .timeline-city {
             color: var(--beige);
@@ -618,9 +609,11 @@
             color: var(--muted);
         }
         .timeline-sub {
-            font-size: 0.75rem;
+            display: block;
+            font-size: 0.7rem;
             color: var(--muted);
             font-weight: 200;
+            margin-top: 0.15rem;
         }
 
         /* Retail Partners - refined */
@@ -1207,46 +1200,34 @@
             </div>
         </div>
 
-        <!-- Expansion Timeline - Simple vertical flow -->
+        <!-- Expansion Timeline -->
         <div class="expansion-timeline reveal reveal-delay-3">
             <div class="timeline-flow">
                 <div class="timeline-item current">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-city">Porto</span>
-                        <span class="timeline-sub">HQ · Terracota · VARD</span>
-                    </div>
+                    <span class="timeline-city">Porto</span>
+                    <span class="timeline-sub">HQ · Terracota · VARD</span>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-city">Braga</span>
-                    </div>
+                    <span class="timeline-city">Braga</span>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-city">Lisbon</span>
-                    </div>
+                    <span class="timeline-city">Lisbon</span>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-city">Algarve</span>
-                    </div>
+                    <span class="timeline-city">Algarve</span>
                 </div>
                 <div class="timeline-item future">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-city">Madrid</span>
-                        <span class="timeline-sub">Year 2+</span>
-                    </div>
+                    <span class="timeline-city">Madrid</span>
+                    <span class="timeline-sub">Year 2+</span>
                 </div>
                 <div class="timeline-item future">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-city">Barcelona</span>
-                    </div>
+                    <span class="timeline-city">Barcelona</span>
                 </div>
             </div>
         </div>
