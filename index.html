@@ -564,196 +564,6 @@
         footer { padding: 5rem 3rem; text-align: center; border-top: 1px solid var(--subtle); }
         footer p { font-size: 0.7rem; color: var(--muted); opacity: 0.6; }
 
-        /* ========== PREMIUM UX UPGRADES ========== */
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--beige), rgba(222,185,149,0.6));
-            z-index: 1000;
-            transition: width 0.1s ease-out;
-        }
-
-        /* Side Navigation Dots */
-        .side-nav {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .side-nav.visible { opacity: 1; }
-        .side-nav-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--subtle);
-            border: 1px solid var(--muted);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .side-nav-dot:hover {
-            background: rgba(222,185,149,0.3);
-            transform: scale(1.3);
-        }
-        .side-nav-dot.active {
-            background: var(--beige);
-            border-color: var(--beige);
-            box-shadow: 0 0 15px rgba(222,185,149,0.5);
-        }
-        .side-nav-dot::before {
-            content: attr(data-label);
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.6rem;
-            color: var(--muted);
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-        .side-nav-dot:hover::before { opacity: 1; }
-
-        /* Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            padding: 1rem 2rem;
-            background: var(--beige);
-            color: var(--black);
-            text-decoration: none;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            border-radius: 4px;
-            z-index: 100;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 40px rgba(222,185,149,0.3);
-        }
-        .sticky-cta.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .sticky-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 50px rgba(222,185,149,0.4);
-        }
-
-        /* Enhanced Card Hover Effects */
-        .product-card,
-        .partner-card,
-        .testimonial-card,
-        .risk-card,
-        .economics-item,
-        .breakdown-category {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .product-card:hover,
-        .partner-card:hover,
-        .breakdown-category:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(222,185,149,0.1);
-        }
-        .testimonial-card:hover,
-        .risk-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(222,185,149,0.3);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-        .economics-item:hover {
-            transform: translateY(-4px) scale(1.02);
-            background: var(--subtle);
-        }
-
-        /* Section Backgrounds for Visual Hierarchy */
-        .section-alt {
-            background: linear-gradient(180deg, rgba(222,185,149,0.03) 0%, transparent 100%);
-        }
-        .section-highlight {
-            background: linear-gradient(180deg, transparent 0%, rgba(222,185,149,0.05) 50%, transparent 100%);
-        }
-
-        /* Animated Counter Styles */
-        .count-up {
-            display: inline-block;
-        }
-
-        /* Trust Badges / Partner Logos */
-        .trust-strip {
-            padding: 3rem 2rem;
-            background: var(--faint);
-            border-top: 1px solid var(--subtle);
-            border-bottom: 1px solid var(--subtle);
-        }
-        .trust-strip-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-        .trust-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-        .trust-item:hover { opacity: 1; }
-        .trust-icon {
-            font-size: 1.5rem;
-            color: var(--beige);
-        }
-        .trust-label {
-            font-size: 0.55rem;
-            color: var(--muted);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        /* Pulse animation for key metrics */
-        @keyframes metricPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-        .data-value.highlight {
-            animation: metricPulse 2s ease-in-out infinite;
-        }
-
-        /* Hide side nav on mobile */
-        @media (max-width: 900px) {
-            .side-nav { display: none; }
-            .sticky-cta { right: 1rem; bottom: 1rem; padding: 0.8rem 1.5rem; font-size: 0.6rem; }
-        }
-        @media (max-width: 600px) {
-            .trust-strip-inner { gap: 2rem; }
-            .trust-item { flex: 0 0 calc(33% - 1rem); }
-        }
-
-        /* ========== END PREMIUM UX UPGRADES ========== */
-
         /* Testimonials */
         .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
         .testimonial-card {
@@ -800,47 +610,9 @@
             .risk-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
-            .economics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-            .economics-item { padding: 1rem; }
-            .economics-value { font-size: 1.25rem; }
-            .economics-label { font-size: 0.65rem; }
+            .economics-grid { grid-template-columns: repeat(2, 1fr); }
             .cap-table { grid-template-columns: 1fr; gap: 1rem; }
             .cap-arrow { transform: rotate(90deg); }
-            .cap-percent { font-size: 1.25rem; }
-            .data-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-            .data-label { max-width: 100%; margin: 0 auto; }
-            .data-value { font-size: clamp(1.5rem, 6vw, 2rem) !important; }
-            .data-value[style*="font-size"] { font-size: clamp(1.5rem, 6vw, 2rem) !important; }
-            .breakdown-item { flex-direction: column; gap: 0.25rem; text-align: left; }
-            .breakdown-item-value { color: var(--beige); }
-            .breakdown-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
-            .breakdown-total { font-size: 1.25rem; }
-            .headline { word-wrap: break-word; hyphens: auto; }
-            .testimonial-card { padding: 1.5rem; }
-            .testimonial-quote { font-size: 0.85rem; }
-            .testimonial-card::before { font-size: 2rem; top: 0.75rem; left: 1rem; }
-            .risk-card { padding: 1.5rem; }
-            .risk-title { font-size: 0.9rem; }
-            .risk-desc { font-size: 0.75rem; }
-            .risk-mitigation { font-size: 0.75rem; }
-            /* Product card stats - stack on mobile */
-            .product-stats { grid-template-columns: 1fr; gap: 1rem; }
-            .product-stat-value { font-size: 0.9rem; }
-            /* Timeline adjustments */
-            .timeline-item { padding-top: 1.5rem; }
-            .timeline-metric-value { font-size: 1rem; }
-            .timeline-metric-label { font-size: 0.55rem; }
-            /* Flywheel mobile */
-            .flywheel-item { gap: 1rem; }
-            .flywheel-icon { width: 36px; height: 36px; font-size: 0.6rem; }
-            .flywheel-name { font-size: 0.9rem; }
-            .flywheel-desc { font-size: 0.75rem; }
-            /* Partner cards */
-            .partner-name { font-size: 1.2rem; }
-            .partner-features li { font-size: 0.8rem; }
-            /* Market bars */
-            .market-bar-header span:first-child { font-size: 0.85rem; }
-            .market-bar-values { font-size: 0.65rem; }
         }
 
         /* Responsive - improved */
@@ -887,54 +659,9 @@
             .competitor-tooltip { max-width: 140px; font-size: 0.65rem; }
             .map-hint { font-size: 0.65rem; }
         }
-        /* Very small screens (iPhone SE, older devices) */
-        @media (max-width: 380px) {
-            section { padding: clamp(4rem, 8vh, 6rem) 1rem; }
-            .headline { font-size: clamp(1.5rem, 7vw, 2rem); }
-            .title { font-size: clamp(1.1rem, 5vw, 1.5rem); }
-            .display { font-size: clamp(2rem, 10vw, 3rem) !important; }
-            .economics-grid { grid-template-columns: 1fr; }
-            .retention-stat-value { font-size: 1.5rem; }
-            .product-card { padding: 1.5rem; }
-            .product-name { font-size: 1rem; }
-            .product-price { font-size: 1.5rem; }
-            .flywheel-section { padding: 1.5rem; }
-            .partner-card { padding: 1.5rem; }
-            /* Leadership stats */
-            [style*="font-size: 1.8rem"] { font-size: 1.4rem !important; }
-            /* CTA link */
-            .cta-link { padding: 1.25rem 2.5rem; font-size: 0.65rem; }
-        }
-        /* Value props banner - reduce letter-spacing on mobile */
-        @media (max-width: 500px) {
-            [style*="letter-spacing: 0.3em"] { letter-spacing: 0.15em !important; font-size: 0.6rem !important; }
-            /* Password gate input - responsive width */
-            .gate-input { width: 100%; max-width: 280px; }
-            .gate-content { padding: 0 1.5rem; }
-        }
     </style>
 </head>
 <body>
-
-<!-- Scroll Progress Bar -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Side Navigation Dots -->
-<nav class="side-nav" id="sideNav">
-    <div class="side-nav-dot" data-target="hero" data-label="Home"></div>
-    <div class="side-nav-dot" data-target="problem" data-label="Problem"></div>
-    <div class="side-nav-dot" data-target="market" data-label="Market"></div>
-    <div class="side-nav-dot" data-target="solution" data-label="Solution"></div>
-    <div class="side-nav-dot" data-target="products" data-label="Products"></div>
-    <div class="side-nav-dot" data-target="traction" data-label="Traction"></div>
-    <div class="side-nav-dot" data-target="financials" data-label="Financials"></div>
-    <div class="side-nav-dot" data-target="gtm" data-label="Go-to-Market"></div>
-    <div class="side-nav-dot" data-target="roadmap" data-label="Roadmap"></div>
-    <div class="side-nav-dot" data-target="ask" data-label="The Ask"></div>
-</nav>
-
-<!-- Sticky CTA -->
-<a href="https://wa.me/351910130107" target="_blank" class="sticky-cta" id="stickyCta">Let's Talk →</a>
 
 <!-- Password Gate -->
 <div class="password-gate" id="passwordGate">
@@ -979,34 +706,8 @@
     <p style="font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); opacity: 0.7;">Zero seed oils · Zero artificial · Maximum absorption</p>
 </div>
 
-<!-- Trust Signals Strip -->
-<div class="trust-strip">
-    <div class="trust-strip-inner">
-        <div class="trust-item">
-            <div class="trust-icon">🥩</div>
-            <div class="trust-label">100% Grass-Fed</div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">🇪🇺</div>
-            <div class="trust-label">EU Compliant</div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">🔬</div>
-            <div class="trust-label">Lab Verified</div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">🌿</div>
-            <div class="trust-label">Single Ingredient</div>
-        </div>
-        <div class="trust-item">
-            <div class="trust-icon">⭐</div>
-            <div class="trust-label">4.8 Star Rating</div>
-        </div>
-    </div>
-</div>
-
 <!-- Problem -->
-<section id="problem" class="section-alt">
+<section>
     <div class="section-content">
         <span class="label reveal">The Problem</span>
         <h2 class="headline reveal reveal-delay-1">The protein industry prioritizes shelf life over your life.</h2>
@@ -1030,7 +731,7 @@
 </section>
 
 <!-- Market Opportunity -->
-<section id="market">
+<section>
     <div class="section-content">
         <span class="label reveal">Market Opportunity</span>
         <h2 class="headline reveal reveal-delay-1">A $100B+ market in clean-label revolution.</h2>
@@ -1094,7 +795,7 @@
 </section>
 
 <!-- Competitive Landscape -->
-<section class="section-highlight">
+<section>
     <div class="section-wide">
         <span class="label reveal">Competitive Landscape</span>
         <h2 class="headline reveal reveal-delay-1">White space in premium clean-label.</h2>
@@ -1160,7 +861,7 @@
 </section>
 
 <!-- Solution -->
-<section id="solution" class="section-alt">
+<section>
     <div class="section-content">
         <span class="label reveal">The Solution</span>
         <h2 class="headline reveal reveal-delay-1">One ingredient.<br><span class="accent">Maximum absorption.</span></h2>
@@ -1170,7 +871,7 @@
 </section>
 
 <!-- Products -->
-<section id="products">
+<section>
     <div class="section-wide">
         <span class="label reveal">Product Line</span>
         <h2 class="headline reveal reveal-delay-1">Three products. Strong unit economics.</h2>
@@ -1276,7 +977,7 @@
 </section>
 
 <!-- Traction -->
-<section id="traction" class="section-highlight">
+<section>
     <div class="section-content">
         <span class="label reveal">Traction</span>
         <h2 class="headline reveal reveal-delay-1">Product-market fit is proven.</h2>
@@ -1320,7 +1021,7 @@
 </section>
 
 <!-- Financial Snapshot -->
-<section id="financials" class="section-alt">
+<section>
     <div class="section-content">
         <span class="label reveal">Financial Snapshot</span>
         <h2 class="headline reveal reveal-delay-1">€0.4K today. <span class="accent">€12K in 18 months.</span></h2>
@@ -1350,8 +1051,8 @@
                 <div class="data-label">Monthly burn rate (post-investment)</div>
             </div>
             <div class="data-item">
-                <div class="data-value" style="font-size: 2rem;">24+</div>
-                <div class="data-label">Months runway with €150K</div>
+                <div class="data-value" style="font-size: 2rem;">18+</div>
+                <div class="data-label">Months runway with €100K</div>
             </div>
             <div class="data-item">
                 <div class="data-value accent" style="font-size: 2rem;">M12</div>
@@ -1362,7 +1063,7 @@
 </section>
 
 <!-- Retail Strategy -->
-<section id="gtm">
+<section>
     <div class="section-wide">
         <span class="label reveal">Go-to-Market</span>
         <h2 class="headline reveal reveal-delay-1">Flagship experience + wholesale distribution.</h2>
@@ -1512,14 +1213,14 @@
 <section>
     <div class="section-wide">
         <span class="label reveal">Use of Funds</span>
-        <h2 class="headline reveal reveal-delay-1">€150,000 — every euro mapped.</h2>
+        <h2 class="headline reveal reveal-delay-1">€100,000 — every euro mapped.</h2>
         <div class="divider reveal"></div>
 
         <div class="investment-breakdown reveal reveal-delay-2">
             <div class="breakdown-category">
                 <div class="breakdown-header">
                     <span class="breakdown-title">Marketing</span>
-                    <span class="breakdown-total">€45,100</span>
+                    <span class="breakdown-total">€38,000</span>
                 </div>
                 <div class="breakdown-items">
                     <div class="breakdown-item">
@@ -1527,16 +1228,16 @@
                         <span class="breakdown-item-value">€24,000</span>
                     </div>
                     <div class="breakdown-item">
-                        <span class="breakdown-item-name">12 Micro-influencers</span>
-                        <span class="breakdown-item-value">€12,000</span>
+                        <span class="breakdown-item-name">35 Micro-influencers</span>
+                        <span class="breakdown-item-value">€7,500</span>
                     </div>
                     <div class="breakdown-item">
                         <span class="breakdown-item-name">Affiliate program setup</span>
-                        <span class="breakdown-item-value">€3,500</span>
+                        <span class="breakdown-item-value">€2,500</span>
                     </div>
                     <div class="breakdown-item">
                         <span class="breakdown-item-name">Events & sampling (16 events)</span>
-                        <span class="breakdown-item-value">€5,600</span>
+                        <span class="breakdown-item-value">€4,000</span>
                     </div>
                 </div>
             </div>
@@ -1544,24 +1245,24 @@
             <div class="breakdown-category">
                 <div class="breakdown-header">
                     <span class="breakdown-title">Inventory</span>
-                    <span class="breakdown-total">€41,152</span>
+                    <span class="breakdown-total">€30,000</span>
                 </div>
                 <div class="breakdown-items">
                     <div class="breakdown-item">
-                        <span class="breakdown-item-name">Whey Protein (2,000 units)</span>
-                        <span class="breakdown-item-value">€22,020</span>
+                        <span class="breakdown-item-name">Whey Protein (1,200 units)</span>
+                        <span class="breakdown-item-value">€13,200</span>
                     </div>
                     <div class="breakdown-item">
-                        <span class="breakdown-item-name">Protein Cappuccino (6,666 cups)</span>
-                        <span class="breakdown-item-value">€11,332</span>
+                        <span class="breakdown-item-name">RTD Cappuccino (3,500 units)</span>
+                        <span class="breakdown-item-value">€10,500</span>
                     </div>
                     <div class="breakdown-item">
                         <span class="breakdown-item-name">Crumb Balls (2,500 units)</span>
                         <span class="breakdown-item-value">€5,300</span>
                     </div>
                     <div class="breakdown-item">
-                        <span class="breakdown-item-name">Labels & buffer</span>
-                        <span class="breakdown-item-value">€2,500</span>
+                        <span class="breakdown-item-name">Packaging & labels</span>
+                        <span class="breakdown-item-value">€1,000</span>
                     </div>
                 </div>
             </div>
@@ -1569,39 +1270,39 @@
             <div class="breakdown-category">
                 <div class="breakdown-header">
                     <span class="breakdown-title">Operations</span>
-                    <span class="breakdown-total">€59,500</span>
+                    <span class="breakdown-total">€32,000</span>
                 </div>
                 <div class="breakdown-items">
-                    <div class="breakdown-item">
-                        <span class="breakdown-item-name">Loyalty app (custom)</span>
-                        <span class="breakdown-item-value">€30,000</span>
-                    </div>
                     <div class="breakdown-item">
                         <span class="breakdown-item-name">Terracota setup (2 locations)</span>
                         <span class="breakdown-item-value">€12,000</span>
                     </div>
                     <div class="breakdown-item">
-                        <span class="breakdown-item-name">Wholesale partner setup</span>
-                        <span class="breakdown-item-value">€7,500</span>
+                        <span class="breakdown-item-name">Loyalty app development</span>
+                        <span class="breakdown-item-value">€8,000</span>
                     </div>
                     <div class="breakdown-item">
-                        <span class="breakdown-item-name">Fulfillment & logistics</span>
-                        <span class="breakdown-item-value">€6,000</span>
+                        <span class="breakdown-item-name">Wholesale partner setup</span>
+                        <span class="breakdown-item-value">€4,000</span>
                     </div>
                     <div class="breakdown-item">
                         <span class="breakdown-item-name">PT referral program</span>
+                        <span class="breakdown-item-value">€4,000</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Fulfillment & logistics</span>
                         <span class="breakdown-item-value">€4,000</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <p class="small reveal reveal-delay-3" style="margin-top: 2rem; text-align: center;">Inventory investment generates €95,000+ potential revenue (2.3x return). Marketing targets 500+ new customers.</p>
+        <p class="small reveal reveal-delay-3" style="margin-top: 2rem; text-align: center;">Inventory investment generates €69,500 potential revenue (2.3x return). Marketing targets 500+ new customers.</p>
     </div>
 </section>
 
 <!-- Roadmap -->
-<section id="roadmap" class="section-highlight">
+<section>
     <div class="section-content">
         <span class="label reveal">18-Month Roadmap</span>
         <h2 class="headline reveal reveal-delay-1">Clear milestones. Measurable outcomes.</h2>
@@ -1775,17 +1476,17 @@
 </section>
 
 <!-- The Ask -->
-<section id="ask" class="section-alt" style="min-height: 100vh;">
+<section style="min-height: 100vh;">
     <div class="section-wide" style="text-align: center;">
         <span class="label reveal">The Ask</span>
         <div class="reveal reveal-delay-1" style="margin: 3rem 0;">
-            <div style="font-size: clamp(5rem, 12vw, 10rem); font-weight: 100; color: var(--beige); letter-spacing: -0.04em; line-height: 0.9;">€150K</div>
+            <div style="font-size: clamp(5rem, 12vw, 10rem); font-weight: 100; color: var(--beige); letter-spacing: -0.04em; line-height: 0.9;">€100K</div>
             <p style="font-size: 1.25rem; color: var(--muted); margin-top: 1.5rem; font-weight: 300;">for 20% equity</p>
         </div>
 
         <div class="data-grid reveal reveal-delay-2" style="max-width: 700px; margin: 5rem auto 0; justify-content: center;">
             <div class="data-item" style="text-align: center;">
-                <div class="data-value" style="font-size: 2.5rem;">€750K</div>
+                <div class="data-value" style="font-size: 2.5rem;">€500K</div>
                 <div class="data-label" style="margin: 0 auto;">Post-money valuation</div>
             </div>
             <div class="data-item" style="text-align: center;">
@@ -1989,129 +1690,6 @@
 
         lastScrollY = currentScrollY;
     }, { passive: true });
-
-    // ========== PREMIUM UX FEATURES ==========
-
-    // Scroll Progress Bar
-    const scrollProgress = document.getElementById('scrollProgress');
-    const sideNav = document.getElementById('sideNav');
-    const stickyCta = document.getElementById('stickyCta');
-    const heroSection = document.getElementById('hero');
-
-    function updateScrollProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        scrollProgress.style.width = scrollPercent + '%';
-
-        // Show/hide side nav and sticky CTA after hero
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        if (scrollTop > heroBottom * 0.5) {
-            sideNav.classList.add('visible');
-            stickyCta.classList.add('visible');
-        } else {
-            sideNav.classList.remove('visible');
-            stickyCta.classList.remove('visible');
-        }
-    }
-
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    updateScrollProgress(); // Initial call
-
-    // Side Navigation - Active State & Click to Scroll
-    const sideNavDots = document.querySelectorAll('.side-nav-dot');
-    const sections = [];
-
-    sideNavDots.forEach(dot => {
-        const targetId = dot.dataset.target;
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-            sections.push({ id: targetId, element: targetSection, dot: dot });
-
-            dot.addEventListener('click', () => {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-    });
-
-    // Update active dot based on scroll position
-    function updateActiveDot() {
-        const scrollPos = window.scrollY + window.innerHeight / 3;
-
-        sections.forEach(section => {
-            const sectionTop = section.element.offsetTop;
-            const sectionBottom = sectionTop + section.element.offsetHeight;
-
-            if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-                sideNavDots.forEach(d => d.classList.remove('active'));
-                section.dot.classList.add('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', updateActiveDot, { passive: true });
-    updateActiveDot(); // Initial call
-
-    // Count-Up Animation for Numbers
-    function animateCountUp(element) {
-        const text = element.textContent;
-        const hasPrefix = text.match(/^([€$])/);
-        const hasSuffix = text.match(/([%xKMB+]+)$/i);
-        const prefix = hasPrefix ? hasPrefix[1] : '';
-        const suffix = hasSuffix ? hasSuffix[1] : '';
-
-        // Extract numeric value
-        let numStr = text.replace(/[€$%xKMB+]/gi, '').trim();
-        const hasDecimal = numStr.includes('.');
-        const targetNum = parseFloat(numStr);
-
-        if (isNaN(targetNum)) return;
-
-        const duration = 1500;
-        const startTime = performance.now();
-        const startNum = 0;
-
-        function easeOutCubic(t) {
-            return 1 - Math.pow(1 - t, 3);
-        }
-
-        function update(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeOutCubic(progress);
-            const currentNum = startNum + (targetNum - startNum) * easedProgress;
-
-            if (hasDecimal) {
-                element.textContent = prefix + currentNum.toFixed(1) + suffix;
-            } else {
-                element.textContent = prefix + Math.round(currentNum) + suffix;
-            }
-
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                element.textContent = text; // Ensure final value is exact
-            }
-        }
-
-        requestAnimationFrame(update);
-    }
-
-    // Observe data values for count-up animation
-    const countUpObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.dataset.countedUp) {
-                entry.target.dataset.countedUp = 'true';
-                animateCountUp(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.data-value, .economics-value, .retention-stat-value, .product-price, .timeline-metric-value').forEach(el => {
-        countUpObserver.observe(el);
-    });
-
-    // ========== END PREMIUM UX FEATURES ==========
 </script>
 
 </body>
