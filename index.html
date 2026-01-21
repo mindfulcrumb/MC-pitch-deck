@@ -442,13 +442,13 @@
         .product-card:hover { background: var(--subtle); transform: translateY(-4px); }
         .product-img {
             width: 100%;
-            height: 180px;
+            aspect-ratio: 1;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-bottom: 1.5rem;
-            background: rgba(255,255,255,0.03);
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
         }
-        .product-card.hero .product-img { height: 220px; }
         .product-card.hero {
             background: linear-gradient(135deg, rgba(222,185,149,0.12) 0%, var(--faint) 100%);
             border: 1px solid rgba(222,185,149,0.2);
