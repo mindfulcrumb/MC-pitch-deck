@@ -42,6 +42,156 @@
         .small { font-size: 0.85rem; color: var(--muted); }
         .accent { color: var(--beige); }
 
+        /* Password Gate */
+        .password-gate {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .password-gate.unlocked {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .password-gate.hidden { display: none; }
+
+        /* Water Drop Animation */
+        .water-drop {
+            width: 60px;
+            height: 80px;
+            position: relative;
+            margin-bottom: 3rem;
+            animation: dropFall 1.5s ease-in-out;
+        }
+        .water-drop::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--beige) 0%, rgba(222,185,149,0.6) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform: rotate(45deg);
+            box-shadow: 0 0 40px rgba(222,185,149,0.4), inset 0 -10px 20px rgba(255,255,255,0.1);
+        }
+        .water-drop::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--beige) 0%, rgba(222,185,149,0.8) 100%);
+            border-radius: 0 50% 50% 50%;
+        }
+        @keyframes dropFall {
+            0% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+            60% { transform: translateY(0) scale(1); opacity: 1; }
+            75% { transform: translateY(-20px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            width: 100px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid var(--beige);
+            opacity: 0;
+            animation: rippleOut 1.5s ease-out 1s forwards;
+        }
+        .ripple:nth-child(2) { animation-delay: 1.2s; }
+        .ripple:nth-child(3) { animation-delay: 1.4s; }
+        @keyframes rippleOut {
+            0% { transform: scale(0.5); opacity: 0.8; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        .gate-content {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease 1.8s forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gate-title {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--beige);
+            margin-bottom: 2rem;
+        }
+        .gate-input-wrap {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .gate-input {
+            width: 280px;
+            padding: 1rem 1.5rem;
+            background: var(--faint);
+            border: 1px solid var(--subtle);
+            border-radius: 4px;
+            color: var(--cream);
+            font-family: inherit;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 0.1em;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gate-input::placeholder {
+            color: var(--muted);
+            opacity: 0.5;
+        }
+        .gate-input:focus {
+            border-color: var(--beige);
+            box-shadow: 0 0 20px rgba(222,185,149,0.15);
+        }
+        .gate-input.error {
+            border-color: #e74c3c;
+            animation: shake 0.5s ease;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .gate-submit {
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 1px solid var(--beige);
+            color: var(--beige);
+            font-family: inherit;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .gate-submit:hover {
+            background: var(--beige);
+            color: var(--black);
+        }
+        .gate-error {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #e74c3c;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gate-error.visible { opacity: 1; }
+
         /* Navigation - refined */
         nav {
             position: fixed; top: 0; left: 0; right: 0;
@@ -389,6 +539,25 @@
     </style>
 </head>
 <body>
+
+<!-- Password Gate -->
+<div class="password-gate" id="passwordGate">
+    <div class="water-drop">
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+    </div>
+    <div class="gate-content">
+        <p class="gate-title">Investor Access</p>
+        <form id="gateForm">
+            <div class="gate-input-wrap">
+                <input type="password" class="gate-input" id="gatePassword" placeholder="Enter password" autocomplete="off">
+            </div>
+            <button type="submit" class="gate-submit">Enter</button>
+        </form>
+        <p class="gate-error" id="gateError">Incorrect password</p>
+    </div>
+</div>
 
 <nav>
     <a href="#hero" class="logo"><img src="logo.svg" alt="Mindful Crumb" height="18"></a>
@@ -1114,6 +1283,42 @@
 </footer>
 
 <script>
+    // Password Gate
+    const GATE_PASSWORD = 'yesiamin2026';
+    const gate = document.getElementById('passwordGate');
+    const gateForm = document.getElementById('gateForm');
+    const gateInput = document.getElementById('gatePassword');
+    const gateError = document.getElementById('gateError');
+
+    // Check if already authenticated
+    if (sessionStorage.getItem('mc_authenticated') === 'true') {
+        gate.classList.add('hidden');
+    }
+
+    gateForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = gateInput.value;
+
+        if (password === GATE_PASSWORD) {
+            // Success - unlock
+            sessionStorage.setItem('mc_authenticated', 'true');
+            gate.classList.add('unlocked');
+            setTimeout(() => gate.classList.add('hidden'), 800);
+        } else {
+            // Error - shake and show message
+            gateInput.classList.add('error');
+            gateError.classList.add('visible');
+            setTimeout(() => {
+                gateInput.classList.remove('error');
+            }, 500);
+        }
+    });
+
+    // Clear error on input
+    gateInput.addEventListener('input', function() {
+        gateError.classList.remove('visible');
+    });
+
     // Intersection Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
