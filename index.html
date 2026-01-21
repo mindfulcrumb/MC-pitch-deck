@@ -551,69 +551,98 @@
             font-size: 0.8rem; color: var(--muted); line-height: 1.4;
         }
 
-        /* Expansion Timeline */
-        .expansion-timeline {
-            margin-top: 3rem;
-            display: flex;
-            justify-content: center;
+        /* Geographic Expansion */
+        .expansion-section {
+            margin-top: 4rem;
+            padding: 2.5rem;
+            background: var(--faint);
+            border-radius: 12px;
+            border: 1px solid var(--subtle);
         }
-        .timeline-flow {
-            position: relative;
-            padding-left: 24px;
+        .expansion-header {
+            margin-bottom: 2rem;
         }
-        .timeline-flow::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 7px;
-            bottom: 7px;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--beige) 0%, var(--beige) 60%, rgba(222,185,149,0.3) 100%);
-        }
-        .timeline-item {
-            position: relative;
-            padding: 0.75rem 0;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -24px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--beige);
-        }
-        .timeline-item.current .timeline-dot {
-            width: 13px;
-            height: 13px;
-            left: -25px;
-            box-shadow: 0 0 15px var(--beige);
-        }
-        .timeline-item.future .timeline-dot {
-            background: transparent;
-            border: 1px dashed rgba(222,185,149,0.4);
-        }
-        .timeline-city {
+        .expansion-label {
             display: block;
-            font-size: 1rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--beige);
+            margin-bottom: 0.5rem;
+        }
+        .expansion-subtitle {
+            font-size: 1.1rem;
             font-weight: 300;
             color: var(--cream);
-            letter-spacing: 0.01em;
+            margin: 0;
         }
-        .timeline-item.current .timeline-city {
+        .expansion-phases {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .expansion-phase {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .phase-badge {
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            border: 1px solid rgba(222,185,149,0.3);
+            color: var(--muted);
+        }
+        .phase-badge.current {
+            background: var(--beige);
+            border-color: var(--beige);
+            color: var(--black);
+        }
+        .phase-region {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--cream);
+        }
+        .expansion-phase.future .phase-region {
+            color: var(--muted);
+        }
+        .phase-cities {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            padding-left: 0.5rem;
+        }
+        .phase-city {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--muted);
+        }
+        .phase-city.active {
             color: var(--beige);
             font-weight: 400;
         }
-        .timeline-item.future .timeline-city {
-            color: var(--muted);
+        .phase-arrow {
+            color: rgba(222,185,149,0.3);
+            font-size: 0.8rem;
         }
-        .timeline-sub {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--muted);
-            font-weight: 200;
-            margin-top: 0.15rem;
+        .expansion-phase.future .phase-city {
+            color: rgba(239,241,230,0.4);
+        }
+        .expansion-phase.future .phase-arrow {
+            color: rgba(222,185,149,0.15);
+        }
+        @media (max-width: 600px) {
+            .expansion-section { padding: 1.5rem; }
+            .phase-cities { gap: 0.4rem; }
+            .phase-city { font-size: 0.85rem; }
         }
 
         /* Retail Partners - refined */
@@ -1200,34 +1229,40 @@
             </div>
         </div>
 
-        <!-- Expansion Timeline -->
-        <div class="expansion-timeline reveal reveal-delay-3">
-            <div class="timeline-flow">
-                <div class="timeline-item current">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-city">Porto</span>
-                    <span class="timeline-sub">HQ · Terracota · VARD</span>
+        <!-- Geographic Expansion -->
+        <div class="expansion-section reveal reveal-delay-3">
+            <div class="expansion-header">
+                <span class="expansion-label">Geographic Expansion</span>
+                <p class="expansion-subtitle">Porto-first, then national, then Iberian.</p>
+            </div>
+
+            <div class="expansion-phases">
+                <div class="expansion-phase">
+                    <div class="phase-header">
+                        <span class="phase-badge current">Now</span>
+                        <span class="phase-region">Portugal</span>
+                    </div>
+                    <div class="phase-cities">
+                        <span class="phase-city active">Porto</span>
+                        <span class="phase-arrow">→</span>
+                        <span class="phase-city">Braga</span>
+                        <span class="phase-arrow">→</span>
+                        <span class="phase-city">Lisbon</span>
+                        <span class="phase-arrow">→</span>
+                        <span class="phase-city">Algarve</span>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-city">Braga</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-city">Lisbon</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-city">Algarve</span>
-                </div>
-                <div class="timeline-item future">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-city">Madrid</span>
-                    <span class="timeline-sub">Year 2+</span>
-                </div>
-                <div class="timeline-item future">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-city">Barcelona</span>
+
+                <div class="expansion-phase future">
+                    <div class="phase-header">
+                        <span class="phase-badge">Year 2+</span>
+                        <span class="phase-region">Spain</span>
+                    </div>
+                    <div class="phase-cities">
+                        <span class="phase-city">Madrid</span>
+                        <span class="phase-arrow">→</span>
+                        <span class="phase-city">Barcelona</span>
+                    </div>
                 </div>
             </div>
         </div>
