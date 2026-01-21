@@ -53,13 +53,26 @@
             align-items: center;
             justify-content: center;
             opacity: 1;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
             overflow: hidden;
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .password-gate.unlocked {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            transform: scale(1.1);
+        }
+        .password-gate.unlocked .gate-logo {
+            transform: scale(1.2);
+            filter: blur(10px);
+        }
+        .password-gate.unlocked .gate-content {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        .password-gate.unlocked .gate-glow {
+            transform: scale(3);
+            opacity: 0;
         }
         .password-gate.hidden { display: none; }
 
@@ -80,6 +93,7 @@
             background: radial-gradient(circle, rgba(222,185,149,0.08) 0%, transparent 60%);
             opacity: 0;
             animation: ambientGlow 2s ease-out 0.3s forwards;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         @keyframes ambientGlow {
             0% { opacity: 0; transform: scale(0.8); }
@@ -94,6 +108,7 @@
             filter: blur(20px);
             transform: scale(0.95);
             animation: logoFadeIn 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .gate-logo img {
             height: 90px;
@@ -124,6 +139,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: contentReveal 1s cubic-bezier(0.25, 0.1, 0.25, 1) 2s forwards;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         @keyframes contentReveal {
             0% { opacity: 0; transform: translateY(20px); }
