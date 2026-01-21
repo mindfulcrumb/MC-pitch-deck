@@ -668,20 +668,20 @@
         }
     </style>
 </head>
-<body class="gate-active">
+<body class="gate-active" style="background: #100E00;">
 
 <!-- Password Gate -->
 <div class="password-gate" id="passwordGate">
     <!-- Apple-style minimal intro -->
     <div class="gate-visual">
-        <div class="gate-glow"></div>
-        <div class="gate-logo">
+        <div class="gate-glow" style="opacity: 0;"></div>
+        <div class="gate-logo" style="opacity: 0;">
             <img src="MC Horizontal Black.svg" alt="Mindful Crumb">
         </div>
         <div class="gate-line"></div>
     </div>
 
-    <div class="gate-content">
+    <div class="gate-content" style="opacity: 0;">
         <p class="gate-title">Investor Access</p>
         <form id="gateForm">
             <div class="gate-input-wrap">
@@ -693,7 +693,7 @@
     </div>
 </div>
 
-<nav>
+<nav id="mainNav" style="visibility: hidden;">
     <a href="#hero" class="logo"><img src="Copy of MC banner flavicon.svg" alt="Mindful Crumb" height="50"></a>
     <a href="#cta" class="nav-link">Contact</a>
 </nav>
@@ -1571,6 +1571,7 @@
     if (sessionStorage.getItem('mc_authenticated') === 'true') {
         gate.classList.add('hidden');
         document.body.classList.remove('gate-active');
+        document.getElementById('mainNav').style.visibility = 'visible';
     }
     // Otherwise gate-active is already set in HTML - no flash of content
 
@@ -1582,6 +1583,7 @@
             // Success - unlock
             sessionStorage.setItem('mc_authenticated', 'true');
             document.body.classList.remove('gate-active');
+            document.getElementById('mainNav').style.visibility = 'visible';
             gate.classList.add('unlocked');
             setTimeout(() => gate.classList.add('hidden'), 800);
         } else {
