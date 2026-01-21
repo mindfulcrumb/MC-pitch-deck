@@ -116,10 +116,13 @@
         .market-bar-values { display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.75rem; color: var(--muted); }
 
         /* Competitor Map - refined */
-        .competitor-map-wrapper { position: relative; width: 100%; max-width: 800px; margin: 4rem auto; }
+        .competitor-map-wrapper { position: relative; width: 100%; max-width: 800px; margin: 4rem auto; padding: 0 1rem; box-sizing: border-box; }
         .competitor-map {
-            position: relative; width: 100%; aspect-ratio: 1.4;
-            background: var(--faint); border-radius: 8px; overflow: hidden;
+            position: relative; width: 100%; padding-bottom: 71.4%; /* fallback for aspect-ratio 1.4 */
+            background: var(--faint); border-radius: 8px;
+        }
+        @supports (aspect-ratio: 1.4) {
+            .competitor-map { padding-bottom: 0; aspect-ratio: 1.4; }
         }
         .map-axis-x, .map-axis-y { position: absolute; background: var(--subtle); }
         .map-axis-x { width: 100%; height: 1px; top: 50%; left: 0; }
@@ -133,6 +136,11 @@
             position: absolute; width: 12px; height: 12px; border-radius: 50%;
             transform: translate(-50%, -50%); cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* Larger touch target for mobile */
+        .competitor-dot::before {
+            content: ''; position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
         }
         .competitor-dot:hover, .competitor-dot:focus, .competitor-dot.active { transform: translate(-50%, -50%) scale(1.6); }
         .competitor-dot.mc {
@@ -160,9 +168,10 @@
         .tooltip-name { font-weight: 500; margin-bottom: 0.25rem; font-size: 0.8rem; }
         .tooltip-detail { color: var(--muted); font-size: 0.65rem; line-height: 1.4; }
         .mc-label { display: none; }
-        .map-hint { text-align: center; margin-top: 1.5rem; font-size: 0.7rem; color: var(--muted); opacity: 0.7; }
+        .map-hint { text-align: center; margin-top: 1.5rem; font-size: 0.75rem; color: var(--muted); transition: opacity 0.5s ease; }
         .map-hint span { display: inline-block; animation: tapHint 1.5s ease-in-out infinite; }
-        @keyframes tapHint { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        .map-hint::before { content: '\261D'; margin-right: 0.5rem; font-size: 1rem; vertical-align: middle; }
+        @keyframes tapHint { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
         /* Product Cards - hero differentiation */
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
@@ -282,16 +291,26 @@
             .flywheel-container { grid-template-columns: 1fr; }
             .flywheel-connector { display: none; }
             .partner-grid { grid-template-columns: 1fr; }
-            .competitor-map { aspect-ratio: 1; }
-            .competitor-map-wrapper { max-width: 100%; padding: 0 1rem; }
-            .competitor-dot.mc { width: 20px; height: 20px; }
-            .competitor-dot.other { width: 14px; height: 14px; }
-            .competitor-tooltip { white-space: normal; max-width: 180px; left: auto; right: auto; }
+            .competitor-map { padding-bottom: 100%; } /* square on mobile */
+            @supports (aspect-ratio: 1) { .competitor-map { padding-bottom: 0; aspect-ratio: 1; } }
+            .competitor-map-wrapper { max-width: 100%; }
+            .competitor-dot.mc { width: 22px; height: 22px; }
+            .competitor-dot.other { width: 16px; height: 16px; }
+            .competitor-tooltip {
+                white-space: normal; max-width: 160px;
+                left: 50%; transform: translateX(-50%);
+                font-size: 0.7rem; padding: 0.75rem;
+            }
             .product-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .timeline { grid-template-columns: 1fr; }
             section { padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 3rem); }
+            .competitor-dot.mc { width: 20px; height: 20px; }
+            .competitor-dot.other { width: 14px; height: 14px; }
+            .map-label { font-size: 0.45rem; }
+            .competitor-tooltip { max-width: 140px; font-size: 0.65rem; }
+            .map-hint { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -462,7 +481,7 @@
                     </div>
                 </div>
             </div>
-            <p class="map-hint"><span>Tap circles to explore competitors</span></p>
+            <p class="map-hint"><span>Tap or hover on dots to see details</span></p>
         </div>
     </div>
 </section>
