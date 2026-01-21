@@ -552,118 +552,76 @@
         }
 
         /* Expansion Map */
-        .expansion-map-container {
+        /* Expansion Timeline - Simple vertical flow */
+        .expansion-timeline {
             margin-top: 4rem;
-            padding: 2rem;
-            background: var(--faint);
-            border-radius: 12px;
-            border: 1px solid var(--subtle);
+            padding: 3rem 2rem;
         }
-        .expansion-map-title {
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--beige);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        .expansion-map {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            aspect-ratio: 1.2;
-        }
-        .map-marker {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            z-index: 10;
-        }
-        .map-marker-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--beige);
-            opacity: 0.6;
-            transition: all 0.3s ease;
-        }
-        .map-marker.active .map-marker-dot {
-            width: 16px;
-            height: 16px;
-            opacity: 1;
-            box-shadow: 0 0 20px var(--beige), 0 0 40px rgba(222,185,149,0.3);
-        }
-        .map-marker.hq .map-marker-dot {
-            width: 20px;
-            height: 20px;
-            opacity: 1;
-            background: var(--beige);
-            box-shadow: 0 0 30px var(--beige);
-        }
-        .map-marker.future .map-marker-dot {
-            opacity: 0.3;
-            border: 1px dashed var(--beige);
-            background: transparent;
-        }
-        .map-marker.potential .map-marker-dot {
-            opacity: 0.15;
-            border: 1px dotted rgba(222,185,149,0.3);
-            background: transparent;
-            width: 8px;
-            height: 8px;
-        }
-        .map-marker.potential .map-marker-label {
-            opacity: 0.4;
-            font-size: 0.65rem;
-        }
-        .legend-dot.potential {
-            opacity: 0.15;
-            border: 1px dotted rgba(222,185,149,0.5);
-            background: transparent;
-        }
-        .map-marker-label {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.65rem;
-            color: var(--cream);
-            white-space: nowrap;
-            text-align: center;
-            opacity: 0.8;
-        }
-        .map-marker.hq .map-marker-label {
-            font-weight: 500;
-            color: var(--beige);
-        }
-        .map-marker-sublabel {
-            font-size: 0.55rem;
-            color: var(--muted);
-            margin-top: 2px;
-        }
-        .map-legend {
+        .timeline-flow {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
         }
-        .map-legend-item {
+        .timeline-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.65rem;
+            gap: 1.5rem;
+            padding: 1.25rem 0;
+            position: relative;
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: calc(50% + 12px);
+            width: 1px;
+            height: calc(100% - 12px);
+            background: linear-gradient(to bottom, var(--beige), rgba(222,185,149,0.2));
+        }
+        .timeline-item.future:not(:last-child)::after {
+            background: rgba(222,185,149,0.2);
+            border-left: 1px dashed rgba(222,185,149,0.3);
+            width: 0;
+        }
+        .timeline-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--beige);
+            flex-shrink: 0;
+        }
+        .timeline-item.current .timeline-dot {
+            width: 14px;
+            height: 14px;
+            box-shadow: 0 0 20px var(--beige);
+        }
+        .timeline-item.future .timeline-dot {
+            background: transparent;
+            border: 1px dashed rgba(222,185,149,0.5);
+        }
+        .timeline-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .timeline-city {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--cream);
+        }
+        .timeline-item.current .timeline-city {
+            color: var(--beige);
+            font-weight: 400;
+        }
+        .timeline-item.future .timeline-city {
             color: var(--muted);
         }
-        .legend-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
+        .timeline-sub {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 200;
         }
-        .legend-dot.hq { background: var(--beige); box-shadow: 0 0 10px var(--beige); }
-        .legend-dot.active { background: var(--beige); opacity: 0.6; }
-        .legend-dot.future { border: 1px dashed var(--beige); background: transparent; }
 
         /* Retail Partners - refined */
         .partner-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 4rem; }
@@ -1249,103 +1207,46 @@
             </div>
         </div>
 
-        <!-- Expansion Map - Geographically accurate using Equirectangular projection -->
-        <!-- Map bounds: Lon -12° to 10°, Lat 35° to 55° | SVG: 320x250 -->
-        <!-- Formula: x = ((lon+12)/22)*320, y = ((55-lat)/20)*250 -->
-        <div class="expansion-map-container reveal reveal-delay-3">
-            <p class="expansion-map-title">European Expansion Strategy</p>
-            <div class="expansion-map" style="height: 420px; display: flex; align-items: center; justify-content: center;">
-                <svg viewBox="0 0 320 250" preserveAspectRatio="xMidYMid meet" style="width: 100%; max-width: 550px; height: auto;">
-                    <defs>
-                        <linearGradient id="iberian-glow" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:rgba(222,185,149,0.25)"/>
-                            <stop offset="100%" style="stop-color:rgba(222,185,149,0.08)"/>
-                        </linearGradient>
-                        <filter id="marker-glow" x="-100%" y="-100%" width="300%" height="300%">
-                            <feGaussianBlur stdDeviation="4" result="blur"/>
-                            <feMerge>
-                                <feMergeNode in="blur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    <!-- EUROPE - Geographically accurate outlines -->
-                    <!-- UK (approx: 50-59°N, -6 to 2°E) -->
-                    <path d="M87,50 L102,38 L116,42 L131,50 L131,70 L116,88 L102,95 L87,88 L80,70 L87,50Z"
-                          fill="none" stroke="rgba(222,185,149,0.2)" stroke-width="1"/>
-                    <!-- Ireland (approx: 51-55°N, -10 to -6°W) -->
-                    <path d="M29,50 L58,38 L73,50 L73,70 L58,82 L29,75 L29,50Z"
-                          fill="none" stroke="rgba(222,185,149,0.2)" stroke-width="1"/>
-                    <!-- France (approx: 42-51°N, -5 to 8°E) -->
-                    <path d="M102,100 L160,50 L218,62 L291,88 L276,150 L218,162 L145,175 L102,150 L102,100Z"
-                          fill="none" stroke="rgba(222,185,149,0.2)" stroke-width="1"/>
-                    <!-- Germany (approx: 47-55°N, 6 to 15°E) - partially visible -->
-                    <path d="M262,0 L320,12 L320,100 L276,112 L262,75 L262,0Z"
-                          fill="none" stroke="rgba(222,185,149,0.15)" stroke-width="0.8"/>
-
-                    <!-- SPAIN - Highlighted (approx: 36-43.5°N, -9.3 to 3.3°E) -->
-                    <!-- Key points: NW 43°N/-9°W, NE 43°N/3°E, SE 36.7°N/-2°W, SW 36°N/-7°W, Gibraltar 36°N/-5.4°W -->
-                    <path d="M44,150 L58,144 L102,150 L160,156 L218,150 L218,175 L189,212 L131,237 L73,237 L44,212 L29,187 L44,150Z"
-                          fill="url(#iberian-glow)" stroke="rgba(222,185,149,0.5)" stroke-width="1.5"/>
-
-                    <!-- PORTUGAL - Highlighted (approx: 37-42°N, -9.5 to -6.2°W) -->
-                    <!-- Key points: NW 42°N/-8.8°W, Porto 41.16/-8.63, Lisbon 38.72/-9.14, SW 37°N/-8.9°W -->
-                    <path d="M46,163 L58,144 L44,150 L29,187 L36,212 L58,225 L73,237 L73,225 L51,200 L46,163Z"
-                          fill="url(#iberian-glow)" stroke="rgba(222,185,149,0.65)" stroke-width="2"/>
-
-                    <!-- Expansion flow line from Porto toward France -->
-                    <path d="M49,173 Q120,140 200,100" fill="none" stroke="rgba(222,185,149,0.12)" stroke-width="1.5" stroke-dasharray="6,4"/>
-
-                    <!-- ========== CITY MARKERS - Calculated from lat/lon ========== -->
-                    <!-- Porto: 41.16°N, -8.63°W → x=(3.37/22)*320=49, y=(13.84/20)*250=173 -->
-                    <circle cx="49" cy="173" r="10" fill="rgba(222,185,149,0.85)" filter="url(#marker-glow)"/>
-                    <circle cx="49" cy="173" r="5" fill="#EFF1E6"/>
-                    <text x="62" y="170" fill="rgba(239,241,230,0.95)" font-size="11" font-weight="300" font-family="Inter, sans-serif">Porto (HQ)</text>
-                    <text x="62" y="182" fill="rgba(222,185,149,0.6)" font-size="8" font-weight="200" font-family="Inter, sans-serif">Terracota · VARD</text>
-
-                    <!-- Braga: 41.55°N, -8.42°W → x=52, y=168 -->
-                    <circle cx="52" cy="168" r="5" fill="rgba(222,185,149,0.7)" stroke="rgba(222,185,149,0.9)" stroke-width="1.5"/>
-                    <text x="60" y="163" fill="rgba(239,241,230,0.8)" font-size="9" font-weight="300" font-family="Inter, sans-serif">Braga</text>
-
-                    <!-- Lisbon: 38.72°N, -9.14°W → x=42, y=204 -->
-                    <circle cx="42" cy="204" r="5" fill="rgba(222,185,149,0.7)" stroke="rgba(222,185,149,0.9)" stroke-width="1.5"/>
-                    <text x="50" y="207" fill="rgba(239,241,230,0.8)" font-size="9" font-weight="300" font-family="Inter, sans-serif">Lisbon</text>
-
-                    <!-- Algarve/Faro: 37.02°N, -7.93°W → x=59, y=225 -->
-                    <circle cx="59" cy="225" r="5" fill="rgba(222,185,149,0.7)" stroke="rgba(222,185,149,0.9)" stroke-width="1.5"/>
-                    <text x="67" y="228" fill="rgba(239,241,230,0.8)" font-size="9" font-weight="300" font-family="Inter, sans-serif">Algarve</text>
-
-                    <!-- Madrid: 40.42°N, -3.70°W → x=121, y=182 -->
-                    <circle cx="121" cy="182" r="5" fill="none" stroke="rgba(222,185,149,0.5)" stroke-width="1.5" stroke-dasharray="3,3"/>
-                    <text x="129" y="186" fill="rgba(239,241,230,0.55)" font-size="9" font-weight="300" font-family="Inter, sans-serif">Madrid</text>
-
-                    <!-- Barcelona: 41.39°N, 2.17°E → x=206, y=170 -->
-                    <circle cx="206" cy="170" r="5" fill="none" stroke="rgba(222,185,149,0.5)" stroke-width="1.5" stroke-dasharray="3,3"/>
-                    <text x="190" y="163" fill="rgba(239,241,230,0.55)" font-size="9" font-weight="300" font-family="Inter, sans-serif">Barcelona</text>
-
-                    <!-- France (Paris): 48.86°N, 2.35°E → x=209, y=77 -->
-                    <circle cx="209" cy="77" r="4" fill="none" stroke="rgba(222,185,149,0.3)" stroke-width="1" stroke-dasharray="2,2"/>
-                    <text x="216" y="80" fill="rgba(239,241,230,0.35)" font-size="8" font-weight="200" font-family="Inter, sans-serif">France</text>
-                </svg>
-            </div>
-
-            <div class="map-legend">
-                <div class="map-legend-item">
-                    <div class="legend-dot hq"></div>
-                    <span>Current HQ</span>
+        <!-- Expansion Timeline - Simple vertical flow -->
+        <div class="expansion-timeline reveal reveal-delay-3">
+            <div class="timeline-flow">
+                <div class="timeline-item current">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-city">Porto</span>
+                        <span class="timeline-sub">HQ · Terracota · VARD</span>
+                    </div>
                 </div>
-                <div class="map-legend-item">
-                    <div class="legend-dot active"></div>
-                    <span>M1-18 Expansion</span>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-city">Braga</span>
+                    </div>
                 </div>
-                <div class="map-legend-item">
-                    <div class="legend-dot future"></div>
-                    <span>Year 2+ (Spain)</span>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-city">Lisbon</span>
+                    </div>
                 </div>
-                <div class="map-legend-item">
-                    <div class="legend-dot potential"></div>
-                    <span>Future Vision</span>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-city">Algarve</span>
+                    </div>
+                </div>
+                <div class="timeline-item future">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-city">Madrid</span>
+                        <span class="timeline-sub">Year 2+</span>
+                    </div>
+                </div>
+                <div class="timeline-item future">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-city">Barcelona</span>
+                    </div>
                 </div>
             </div>
         </div>
