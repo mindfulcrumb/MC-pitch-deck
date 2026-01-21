@@ -88,65 +88,68 @@
         .divider.visible { transform: scaleX(1); }
 
         /* Hero - dramatic entrance */
-        #hero { text-align: center; align-items: center; min-height: 100vh; }
-        #hero .display { margin-bottom: 2rem; white-space: nowrap; position: relative; }
+        #hero { text-align: center; align-items: center; min-height: 100vh; justify-content: center; }
+        #hero .display {
+            margin-bottom: 1.5rem;
+            white-space: nowrap;
+            position: relative;
+            color: var(--cream);
+        }
+        #hero .display .accent {
+            color: var(--beige);
+            position: relative;
+        }
         #hero .subhead {
             max-width: none;
-            margin: 0 auto;
+            margin: 0 auto 0.5rem;
             white-space: nowrap;
-            font-size: clamp(1rem, 2.2vw, 1.5rem);
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
             color: var(--cream);
-            opacity: 0.7;
+            opacity: 0.6;
+            font-weight: 300;
         }
         #hero .tagline {
             white-space: nowrap;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--muted);
-            opacity: 0.5;
+            opacity: 0.4;
+            margin-top: 1.5rem;
         }
 
-        /* Futuristic light sweep animation - runs once, smooth and premium */
+        /* Futuristic light sweep - clean single pass */
         .light-sweep {
             position: relative;
             display: inline-block;
-            background: linear-gradient(
-                90deg,
-                var(--cream) 0%,
-                var(--cream) 35%,
-                rgba(255, 255, 255, 0.95) 50%,
-                var(--cream) 65%,
-                var(--cream) 100%
-            );
-            background-size: 300% 100%;
-            background-position: 100% center;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: lightSweep 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-            animation-delay: 1.5s;
         }
-        .light-sweep .accent {
+        .light-sweep::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: linear-gradient(
                 90deg,
-                var(--beige) 0%,
-                var(--beige) 35%,
-                #fff 50%,
-                var(--beige) 65%,
-                var(--beige) 100%
+                transparent 0%,
+                transparent 40%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 60%,
+                transparent 100%
             );
-            background-size: 300% 100%;
-            background-position: 100% center;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: lightSweep 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-            animation-delay: 1.5s;
+            background-size: 200% 100%;
+            background-position: -100% center;
+            animation: lightSweep 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 1.8s;
+            pointer-events: none;
+            mix-blend-mode: overlay;
         }
         @keyframes lightSweep {
-            0% { background-position: 100% center; }
-            100% { background-position: -100% center; }
+            0% { background-position: -100% center; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { background-position: 200% center; opacity: 0; }
         }
         .scroll-cue {
             position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%);
@@ -368,9 +371,9 @@
         @media (max-width: 600px) {
             .timeline { grid-template-columns: 1fr; }
             section { padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 3rem); }
-            #hero .display { font-size: clamp(2rem, 8vw, 3.5rem); white-space: normal; }
-            #hero .subhead { white-space: normal; font-size: 0.95rem; opacity: 0.6; }
-            #hero .tagline { font-size: 0.6rem; letter-spacing: 0.12em; white-space: normal; }
+            #hero .display { font-size: clamp(1.8rem, 7vw, 3rem); white-space: normal; }
+            #hero .subhead { white-space: normal; font-size: 0.9rem; }
+            #hero .tagline { font-size: 0.55rem; letter-spacing: 0.15em; white-space: normal; }
             .competitor-dot.mc { width: 20px; height: 20px; }
             .competitor-dot.other { width: 14px; height: 14px; }
             .map-label { font-size: 0.45rem; }
@@ -391,7 +394,7 @@
     <span class="label reveal">Investor Overview</span>
     <h1 class="display light-sweep reveal reveal-delay-1">Snacking in the <span class="accent">Future</span></h1>
     <p class="subhead reveal reveal-delay-2">Clean-label protein for the gut-conscious generation</p>
-    <p class="tagline reveal reveal-delay-3" style="margin-top: 2rem;">Zero seed oils · Zero artificial · Maximum absorption</p>
+    <p class="tagline reveal reveal-delay-3">Zero seed oils · Zero artificial · Maximum absorption</p>
     <div class="scroll-cue">
         <div class="scroll-line"></div>
     </div>
