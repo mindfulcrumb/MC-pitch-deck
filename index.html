@@ -52,7 +52,9 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--subtle);
+            transition: transform 0.3s ease;
         }
+        nav.hidden { transform: translateY(-100%); }
         .logo { display: flex; align-items: center; text-decoration: none; }
         .logo img { height: 18px; width: auto; }
         .nav-link { font-size: 0.65rem; color: var(--muted); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.4s ease; }
@@ -1156,6 +1158,27 @@
             dot.addEventListener('click', () => mapHint.style.opacity = '0', { once: true });
         });
     }
+
+    // Nav hide on scroll
+    let lastScrollY = window.scrollY;
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY <= 0) {
+            // At top - always show nav
+            nav.classList.remove('hidden');
+        } else if (currentScrollY > lastScrollY && currentScrollY > 80) {
+            // Scrolling down & past threshold - hide nav
+            nav.classList.add('hidden');
+        } else if (currentScrollY < lastScrollY) {
+            // Scrolling up - show nav
+            nav.classList.remove('hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 </script>
 
 </body>
