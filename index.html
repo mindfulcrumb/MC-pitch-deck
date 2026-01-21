@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindful Crumb</title>
+    <title>Mindful Crumb | Investor Deck</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --black: #100E00;
@@ -15,18 +15,13 @@
             --muted: rgba(239, 241, 230, 0.6);
             --subtle: rgba(239, 241, 230, 0.12);
             --faint: rgba(239, 241, 230, 0.06);
+            --negative: #E85D5D;
+            --positive: #7DD87D;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -35,740 +30,932 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Typography System - Luxury Restraint */
-        .display {
-            font-size: clamp(3.5rem, 9vw, 8rem);
-            font-weight: 300;
-            letter-spacing: -0.04em;
-            line-height: 1.0;
-        }
+        /* Typography */
+        .display { font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; letter-spacing: -0.04em; line-height: 1.0; }
+        .headline { font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; }
+        .title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
+        .subhead { font-size: clamp(1rem, 1.5vw, 1.25rem); font-weight: 400; line-height: 1.5; color: var(--muted); }
+        .body-text { font-size: clamp(0.95rem, 1.1vw, 1.1rem); font-weight: 300; line-height: 1.8; color: var(--muted); }
+        .label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; display: block; }
+        .small { font-size: 0.8rem; color: var(--muted); }
+        .accent { color: var(--beige); }
 
-        .headline {
-            font-size: clamp(2.25rem, 5vw, 4.5rem);
-            font-weight: 300;
-            letter-spacing: -0.025em;
-            line-height: 1.1;
-        }
-
-        .subhead {
-            font-size: clamp(1.15rem, 2vw, 1.5rem);
-            font-weight: 400;
-            line-height: 1.5;
-            color: var(--muted);
-        }
-
-        .body-text {
-            font-size: clamp(1rem, 1.25vw, 1.2rem);
-            font-weight: 300;
-            line-height: 1.8;
-            color: var(--muted);
-        }
-
-        .label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 2rem;
-            display: block;
-        }
-
-        /* Singular Accent Moments */
-        .accent {
-            color: var(--beige);
-        }
-
-        /* Navigation - Minimal */
+        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem clamp(2rem, 6vw, 5rem);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            mix-blend-mode: difference;
+            position: fixed; top: 0; left: 0; right: 0;
+            padding: 1.5rem clamp(2rem, 5vw, 4rem);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; background: linear-gradient(to bottom, var(--black), transparent);
         }
+        .logo { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+        .nav-link { font-size: 0.7rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; transition: color 0.3s; }
+        .nav-link:hover { color: var(--cream); }
 
-        .logo {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--cream);
-        }
-
-        .nav-link {
-            font-size: 0.75rem;
-            color: var(--cream);
-            text-decoration: none;
-            letter-spacing: 0.1em;
-            opacity: 0.7;
-            transition: opacity 0.5s ease;
-        }
-
-        .nav-link:hover {
-            opacity: 1;
-        }
-
-        /* Sections - Gallery Walk Pacing */
+        /* Sections */
         section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: clamp(6rem, 12vh, 10rem) clamp(2rem, 8vw, 10rem);
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding: clamp(5rem, 10vh, 8rem) clamp(2rem, 6vw, 8rem);
             position: relative;
         }
+        .section-content { max-width: 1000px; }
+        .section-wide { max-width: 1400px; width: 100%; margin: 0 auto; }
+        .section-full { width: 100%; }
 
-        .section-content {
-            max-width: 1000px;
-        }
-
-        .section-wide {
-            max-width: 1400px;
-            width: 100%;
-        }
-
-        /* Animation System - Choreographed */
+        /* Animations */
         .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.2s; }
-        .reveal-delay-2 { transition-delay: 0.4s; }
-        .reveal-delay-3 { transition-delay: 0.6s; }
-        .reveal-delay-4 { transition-delay: 0.8s; }
-        .reveal-delay-5 { transition-delay: 1.0s; }
-
-        /* Hero - Commanding Silence */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 clamp(2rem, 8vw, 10rem);
-        }
-
-        #hero .display {
-            margin-bottom: 2.5rem;
-        }
-
-        #hero .subhead {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .scroll-cue {
-            position: absolute;
-            bottom: 4rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 2.5s forwards;
-        }
-
-        .scroll-cue .label {
-            margin-bottom: 0;
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 50px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--beige), transparent);
-            animation: scrollDrop 2.5s ease-in-out infinite;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translate(-50%, 20px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
-
-        @keyframes scrollDrop {
-            0% { transform: translateY(-100%); }
-            50% { transform: translateY(100%); }
-            50.01% { transform: translateY(-100%); }
-            100% { transform: translateY(-100%); }
-        }
-
-        /* Divider - The Beige Moment */
+        /* Divider */
         .divider {
-            width: 40px;
-            height: 1px;
-            background: var(--beige);
-            margin: 3rem 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+            width: 40px; height: 1px; background: var(--beige); margin: 2rem 0;
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
         }
+        .divider.visible { transform: scaleX(1); }
 
-        .divider.visible {
-            transform: scaleX(1);
+        /* Hero */
+        #hero { text-align: center; align-items: center; }
+        #hero .display { margin-bottom: 1.5rem; }
+        .scroll-cue {
+            position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+            opacity: 0; animation: fadeIn 1s ease 2s forwards;
         }
+        .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--beige), transparent); animation: pulse 2s ease-in-out infinite; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* Statement Sections */
-        .statement {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Data Grid */
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .data-item { }
+        .data-value { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem; }
+        .data-label { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+        .data-value.accent { color: var(--beige); }
+
+        /* Market Visualization */
+        .market-bars { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3rem; }
+        .market-bar-item { }
+        .market-bar-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        .market-bar-track { height: 8px; background: var(--subtle); border-radius: 4px; overflow: hidden; position: relative; }
+        .market-bar-fill { height: 100%; background: var(--beige); border-radius: 4px; width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .market-bar-fill.animated { width: var(--width); }
+        .market-bar-values { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.7rem; color: var(--muted); }
+
+        /* Competitor Map */
+        .competitor-map {
+            position: relative; width: 100%; max-width: 800px; aspect-ratio: 1.4;
+            margin: 3rem auto; border: 1px solid var(--subtle); border-radius: 4px;
         }
-
-        .statement .headline {
-            margin-bottom: 1rem;
+        .map-axis-x, .map-axis-y { position: absolute; background: var(--subtle); }
+        .map-axis-x { width: 100%; height: 1px; top: 50%; left: 0; }
+        .map-axis-y { width: 1px; height: 100%; left: 50%; top: 0; }
+        .map-label { position: absolute; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+        .map-label.top { top: 1rem; left: 50%; transform: translateX(-50%); }
+        .map-label.bottom { bottom: 1rem; left: 50%; transform: translateX(-50%); }
+        .map-label.left { left: 1rem; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; }
+        .map-label.right { right: 1rem; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center; }
+        .competitor-dot {
+            position: absolute; width: 12px; height: 12px; border-radius: 50%;
+            transform: translate(-50%, -50%); cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Data Display - Understated Power */
-        .data-row {
-            display: flex;
-            gap: clamp(3rem, 8vw, 8rem);
-            margin-top: 5rem;
-            flex-wrap: wrap;
+        .competitor-dot:hover { transform: translate(-50%, -50%) scale(1.5); }
+        .competitor-dot.mc { width: 20px; height: 20px; background: var(--beige); box-shadow: 0 0 20px var(--beige); }
+        .competitor-dot.other { background: var(--muted); opacity: 0.5; }
+        .competitor-dot.other:hover { opacity: 1; }
+        .competitor-tooltip {
+            position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+            background: var(--black); border: 1px solid var(--subtle); padding: 0.75rem 1rem;
+            border-radius: 4px; white-space: nowrap; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s; font-size: 0.75rem; z-index: 10;
         }
+        .competitor-dot:hover .competitor-tooltip { opacity: 1; }
+        .tooltip-name { font-weight: 500; margin-bottom: 0.25rem; }
+        .tooltip-detail { color: var(--muted); font-size: 0.65rem; }
 
-        .data-point {
-            min-width: 150px;
+        /* Product Cards */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .product-card {
+            border: 1px solid var(--subtle); border-radius: 4px; padding: 2rem;
+            transition: border-color 0.4s ease, background 0.4s ease;
         }
+        .product-card:hover { border-color: var(--beige); background: var(--faint); }
+        .product-name { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .product-price { font-size: 1.75rem; font-weight: 300; color: var(--beige); margin-bottom: 1rem; }
+        .product-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--subtle); }
+        .product-stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .product-stat-value { font-size: 0.9rem; margin-top: 0.25rem; }
 
-        .data-value {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 300;
-            letter-spacing: -0.03em;
-            color: var(--cream);
-            line-height: 1;
-            margin-bottom: 0.75rem;
+        /* Timeline */
+        .timeline { position: relative; margin: 4rem 0; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--subtle); }
+        .timeline-item { position: relative; padding-bottom: 3rem; padding-left: 2rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot {
+            position: absolute; left: -2rem; top: 0.25rem; width: 10px; height: 10px;
+            background: var(--black); border: 2px solid var(--beige); border-radius: 50%;
+            transform: translateX(-50%);
         }
+        .timeline-item.active .timeline-dot { background: var(--beige); }
+        .timeline-date { font-size: 0.7rem; color: var(--beige); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .timeline-content { }
+        .timeline-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .timeline-desc { font-size: 0.85rem; color: var(--muted); }
+        .timeline-metrics { display: flex; gap: 2rem; margin-top: 1rem; }
+        .timeline-metric { }
+        .timeline-metric-value { font-size: 1.25rem; font-weight: 400; }
+        .timeline-metric-label { font-size: 0.65rem; color: var(--muted); }
 
-        .data-label {
-            font-size: 0.8rem;
-            color: var(--muted);
-            line-height: 1.5;
-            max-width: 160px;
-        }
+        /* Investment Breakdown */
+        .investment-breakdown { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .breakdown-category { border: 1px solid var(--subtle); border-radius: 4px; overflow: hidden; }
+        .breakdown-header { padding: 1.5rem; border-bottom: 1px solid var(--subtle); display: flex; justify-content: space-between; align-items: center; }
+        .breakdown-title { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+        .breakdown-total { font-size: 1.25rem; font-weight: 400; color: var(--beige); }
+        .breakdown-items { padding: 1rem 1.5rem; }
+        .breakdown-item { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--faint); font-size: 0.85rem; }
+        .breakdown-item:last-child { border-bottom: none; }
+        .breakdown-item-name { color: var(--muted); }
+        .breakdown-item-value { font-weight: 500; }
 
-        /* Feature List - Refined */
-        .feature-list {
-            list-style: none;
-            margin-top: 3rem;
-            max-width: 500px;
-        }
+        /* Flywheel */
+        .flywheel-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+        .flywheel-section { }
+        .flywheel-title { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--beige); }
+        .flywheel-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--subtle); }
+        .flywheel-item:last-child { border-bottom: none; }
+        .flywheel-icon { width: 32px; height: 32px; border: 1px solid var(--subtle); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+        .flywheel-content { }
+        .flywheel-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.25rem; }
+        .flywheel-desc { font-size: 0.75rem; color: var(--muted); }
+        .flywheel-cac { font-size: 0.7rem; color: var(--beige); margin-top: 0.5rem; }
 
-        .feature-list li {
-            padding: 1.25rem 0;
-            border-bottom: 1px solid var(--subtle);
-            font-size: 0.95rem;
-            color: var(--muted);
-            display: flex;
-            align-items: flex-start;
-            gap: 1.25rem;
-            transition: color 0.4s ease;
-        }
+        /* Retail Partners */
+        .partner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .partner-card { border: 1px solid var(--subtle); border-radius: 4px; padding: 2rem; }
+        .partner-card.flagship { border-color: var(--beige); background: linear-gradient(135deg, rgba(222,185,149,0.08), transparent); }
+        .partner-badge { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--beige); margin-bottom: 1rem; }
+        .partner-name { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .partner-location { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+        .partner-features { list-style: none; }
+        .partner-features li { font-size: 0.8rem; color: var(--muted); padding: 0.5rem 0; border-bottom: 1px solid var(--faint); display: flex; align-items: center; gap: 0.75rem; }
+        .partner-features li:last-child { border-bottom: none; }
+        .feature-dot { width: 4px; height: 4px; background: var(--beige); border-radius: 50%; }
 
-        .feature-list li:first-child {
-            border-top: 1px solid var(--subtle);
-        }
-
-        .feature-list li:hover {
-            color: var(--cream);
-        }
-
-        .feature-marker {
-            width: 4px;
-            height: 4px;
-            background: var(--beige);
-            border-radius: 50%;
-            margin-top: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        /* Quote - Editorial */
-        .quote-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: clamp(8rem, 15vh, 12rem) clamp(2rem, 8vw, 10rem);
-        }
-
-        .quote-mark {
-            font-size: 5rem;
-            color: var(--beige);
-            font-family: Georgia, 'Times New Roman', serif;
-            line-height: 0.5;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-
-        .quote-text {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1.4;
-            max-width: 800px;
-            margin-bottom: 2rem;
-        }
-
-        .quote-author {
-            font-size: 0.8rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-        }
-
-        /* Two Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(4rem, 8vw, 10rem);
-            align-items: center;
-        }
-
-        .col-visual {
-            aspect-ratio: 4/5;
-            background: var(--faint);
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .col-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 30%, var(--subtle), transparent 70%);
-        }
-
-        .placeholder-text {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            opacity: 0.5;
-        }
-
-        /* Investment Section */
-        .investment-hero {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .investment-amount {
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 300;
-            letter-spacing: -0.05em;
-            color: var(--beige);
-            line-height: 1;
-            margin: 1rem 0;
-        }
-
-        .investment-terms {
-            font-size: clamp(1.25rem, 2.5vw, 2rem);
-            color: var(--muted);
-            font-weight: 300;
-        }
-
-        .allocation-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            margin-top: 6rem;
-            max-width: 900px;
-            background: var(--subtle);
-        }
-
-        .allocation-item {
-            background: var(--black);
-            padding: clamp(2rem, 4vw, 3.5rem);
-            text-align: center;
-            transition: background 0.5s ease;
-        }
-
-        .allocation-item:hover {
-            background: var(--faint);
-        }
-
-        .allocation-value {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .allocation-label {
-            font-size: 0.75rem;
-            color: var(--muted);
-            letter-spacing: 0.05em;
-        }
-
-        /* Outcomes Grid */
-        .outcomes-row {
-            display: flex;
-            justify-content: center;
-            gap: clamp(4rem, 10vw, 10rem);
-            margin-top: 5rem;
-            flex-wrap: wrap;
-        }
-
-        .outcome-item {
-            text-align: center;
-        }
-
-        .outcome-value {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-        }
-
-        .outcome-label {
-            font-size: 0.75rem;
-            color: var(--muted);
-            letter-spacing: 0.05em;
-        }
-
-        /* Final CTA */
-        .final-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .final-section .headline {
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-
+        /* CTA */
+        .cta-section { text-align: center; align-items: center; }
         .cta-link {
-            display: inline-block;
-            padding: 1.25rem 3.5rem;
-            border: 1px solid var(--beige);
-            color: var(--beige);
-            text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block; padding: 1.25rem 3rem; border: 1px solid var(--beige);
+            color: var(--beige); text-decoration: none; font-size: 0.75rem;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        .cta-link:hover {
-            background: var(--beige);
-            color: var(--black);
-            padding-left: 4.5rem;
-            padding-right: 4.5rem;
-        }
-
-        .contact-block {
-            margin-top: 5rem;
-        }
-
-        .contact-block .name {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-block p {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin: 0.25rem 0;
-        }
+        .cta-link:hover { background: var(--beige); color: var(--black); }
 
         /* Footer */
-        footer {
-            padding: 3rem;
-            text-align: center;
-            border-top: 1px solid var(--subtle);
-        }
-
-        footer p {
-            font-size: 0.7rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-        }
+        footer { padding: 2rem; text-align: center; border-top: 1px solid var(--subtle); }
+        footer p { font-size: 0.7rem; color: var(--muted); }
 
         /* Responsive */
         @media (max-width: 900px) {
-            .two-col {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .col-visual {
-                aspect-ratio: 16/10;
-                order: -1;
-            }
-
-            .allocation-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .data-row {
-                gap: 2.5rem;
-            }
-
-            .outcomes-row {
-                gap: 3rem;
-            }
+            .flywheel-container, .partner-grid { grid-template-columns: 1fr; }
+            .competitor-map { aspect-ratio: 1; }
         }
-
-        /* Smooth Performance */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
+        @media (max-width: 600px) {
+            .investment-breakdown { grid-template-columns: 1fr; }
+            .product-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Mindful Crumb</div>
-        <a href="mailto:william@mindfulcrumb.com" class="nav-link">Contact</a>
-    </nav>
+<nav>
+    <div class="logo">Mindful Crumb</div>
+    <a href="mailto:william@mindfulcrumb.com" class="nav-link">Contact</a>
+</nav>
 
-    <!-- Hero -->
-    <section id="hero">
-        <span class="label reveal">Nutrition without compromise</span>
-        <h1 class="display reveal reveal-delay-1">Snack<br>Differently.</h1>
-        <p class="subhead reveal reveal-delay-2">Your gut deserves better than additives, fillers, and compromise.</p>
-        <div class="scroll-cue">
-            <span class="label">Scroll</span>
-            <div class="scroll-line"></div>
+<!-- Hero -->
+<section id="hero">
+    <span class="label reveal">Investor Overview</span>
+    <h1 class="display reveal reveal-delay-1">Dining the<br><span class="accent">Future.</span></h1>
+    <p class="subhead reveal reveal-delay-2" style="max-width: 550px;">Clean-label protein for the gut-conscious generation.<br>Zero seed oils. Zero artificial ingredients. Maximum absorption.</p>
+    <div class="scroll-cue">
+        <span class="label" style="margin-bottom: 0; font-size: 0.6rem;">Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- Problem -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">The Problem</span>
+        <h2 class="headline reveal reveal-delay-1">The protein industry prioritizes shelf life over your life.</h2>
+        <div class="divider reveal"></div>
+        <p class="body-text reveal reveal-delay-2" style="max-width: 600px;">Seed oils cause inflammation. Artificial sweeteners disrupt gut microbiome. Gums and fillers compromise absorption. Consumers are forced to choose: healthy but bland, or tasty but toxic.</p>
+        <div class="data-grid reveal reveal-delay-3">
+            <div class="data-item">
+                <div class="data-value">73%</div>
+                <div class="data-label">of protein products contain inflammatory seed oils</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value">89%</div>
+                <div class="data-label">use artificial sweeteners linked to gut issues</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value">0</div>
+                <div class="data-label">EU competitors offer single-ingredient, grass-fed, clean-label whey</div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- The Reality -->
-    <section class="statement">
-        <div class="section-content">
-            <span class="label reveal">The reality</span>
-            <h2 class="headline reveal reveal-delay-1">The protein industry prioritizes shelf life over your life.</h2>
-            <div class="divider reveal reveal-delay-2"></div>
-            <p class="body-text reveal reveal-delay-3">Seed oils. Artificial sweeteners. Gums. Fillers. Ingredients designed for manufacturing efficiency, not human health. Your gut—your second brain—absorbs it all.</p>
-        </div>
-    </section>
-
-    <!-- The Shift -->
-    <section class="statement">
-        <div class="section-content">
-            <span class="label reveal">The shift</span>
-            <h2 class="headline reveal reveal-delay-1">People are waking up.</h2>
-            <div class="divider reveal reveal-delay-2"></div>
-            <div class="data-row reveal reveal-delay-3">
-                <div class="data-point">
-                    <div class="data-value">1 in 2</div>
-                    <div class="data-label">Consumers seeking unprocessed foods</div>
+<!-- Market Opportunity -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">Market Opportunity</span>
+        <h2 class="headline reveal reveal-delay-1">A $100B+ market in clean-label revolution.</h2>
+        <div class="divider reveal"></div>
+        <div class="market-bars reveal reveal-delay-2">
+            <div class="market-bar-item">
+                <div class="market-bar-header">
+                    <span>Protein Supplements</span>
+                    <span class="accent">10% CAGR</span>
                 </div>
-                <div class="data-point">
-                    <div class="data-value">68%</div>
-                    <div class="data-label">Will pay premium for clean label</div>
+                <div class="market-bar-track">
+                    <div class="market-bar-fill" style="--width: 55%;"></div>
                 </div>
-                <div class="data-point">
-                    <div class="data-value">$212B</div>
-                    <div class="data-label">Clean label market by 2030</div>
+                <div class="market-bar-values">
+                    <span>$63B (2025)</span>
+                    <span>$113B (2030)</span>
+                </div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-header">
+                    <span>Clean Label Ingredients</span>
+                    <span class="accent">15% CAGR</span>
+                </div>
+                <div class="market-bar-track">
+                    <div class="market-bar-fill" style="--width: 75%;"></div>
+                </div>
+                <div class="market-bar-values">
+                    <span>$57B (2025)</span>
+                    <span>$212B (2030)</span>
+                </div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-header">
+                    <span>Healthy Snacks</span>
+                    <span class="accent">6% CAGR</span>
+                </div>
+                <div class="market-bar-track">
+                    <div class="market-bar-fill" style="--width: 45%;"></div>
+                </div>
+                <div class="market-bar-values">
+                    <span>$108B (2025)</span>
+                    <span>$185B (2030)</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Our Answer -->
-    <section class="statement">
-        <div class="section-content">
-            <span class="label reveal">Our answer</span>
-            <h2 class="headline reveal reveal-delay-1">One ingredient.<br><span class="accent">Maximum absorption.</span></h2>
-            <div class="divider reveal reveal-delay-2"></div>
-            <p class="body-text reveal reveal-delay-3">100% grass-fed whey concentrate. Nothing else. Dry spray filtration preserves what intensive processing destroys—lactoferrin, immunoglobulins, the compounds your gut actually needs.</p>
+        <div class="data-grid reveal reveal-delay-3" style="margin-top: 4rem;">
+            <div class="data-item">
+                <div class="data-value">1 in 2</div>
+                <div class="data-label">Consumers actively seeking unprocessed foods</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value">68%</div>
+                <div class="data-label">Will pay premium for clean-label products</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value">30%</div>
+                <div class="data-label">Actively reducing processed food intake</div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Product -->
-    <section>
-        <div class="section-wide">
-            <div class="two-col">
-                <div class="reveal">
-                    <span class="label">The product</span>
-                    <h2 class="headline">Whey Protein<br>Concentrate</h2>
-                    <ul class="feature-list">
-                        <li><span class="feature-marker"></span>Single ingredient, grass-fed sourcing</li>
-                        <li><span class="feature-marker"></span>25g protein per serving, lab verified</li>
-                        <li><span class="feature-marker"></span>Bioactive compounds preserved</li>
-                        <li><span class="feature-marker"></span>Unflavored—integrates with any recipe</li>
-                        <li><span class="feature-marker"></span>No seed oils, no sweeteners, no gums</li>
-                    </ul>
+<!-- Competitive Landscape -->
+<section>
+    <div class="section-wide">
+        <span class="label reveal">Competitive Landscape</span>
+        <h2 class="headline reveal reveal-delay-1">White space in premium clean-label.</h2>
+        <div class="divider reveal"></div>
+        <p class="body-text reveal reveal-delay-2">Major EU players compete on price and scale. None offer what conscious consumers demand: single-ingredient, grass-fed, additive-free protein with preserved bioactives.</p>
+
+        <div class="competitor-map reveal reveal-delay-3">
+            <div class="map-axis-x"></div>
+            <div class="map-axis-y"></div>
+            <span class="map-label top">Premium Price</span>
+            <span class="map-label bottom">Budget Price</span>
+            <span class="map-label left">Low Quality</span>
+            <span class="map-label right">High Quality</span>
+
+            <!-- Competitors positioned by price (Y: top=premium) and quality (X: right=high) -->
+            <div class="competitor-dot other" style="left: 25%; top: 75%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name">MyProtein</div>
+                    <div class="tooltip-detail">UK · Mass market · No grass-fed · Additives</div>
                 </div>
-                <div class="col-visual reveal reveal-delay-2">
-                    <span class="placeholder-text">Product Image</span>
+            </div>
+            <div class="competitor-dot other" style="left: 30%; top: 70%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name">Prozis</div>
+                    <div class="tooltip-detail">Portugal · Affordable · No grass-fed · Additives</div>
+                </div>
+            </div>
+            <div class="competitor-dot other" style="left: 28%; top: 80%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name">BioTech USA</div>
+                    <div class="tooltip-detail">Hungary · Budget · No grass-fed · Additives</div>
+                </div>
+            </div>
+            <div class="competitor-dot other" style="left: 32%; top: 72%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name">Bulk</div>
+                    <div class="tooltip-detail">UK · Value-focused · No grass-fed · Additives</div>
+                </div>
+            </div>
+            <div class="competitor-dot other" style="left: 55%; top: 35%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name">Foodspring</div>
+                    <div class="tooltip-detail">Germany · Premium · Grass-fed · Still uses additives</div>
+                </div>
+            </div>
+            <div class="competitor-dot other" style="left: 48%; top: 45%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name">ESN</div>
+                    <div class="tooltip-detail">Germany · Quality-focused · Some grass-fed SKUs · Additives</div>
+                </div>
+            </div>
+            <div class="competitor-dot mc" style="left: 85%; top: 25%;">
+                <div class="competitor-tooltip">
+                    <div class="tooltip-name" style="color: var(--beige);">Mindful Crumb</div>
+                    <div class="tooltip-detail">Portugal · Premium clean-label<br>100% Grass-fed · Zero additives · Bioactives preserved</div>
                 </div>
             </div>
         </div>
-    </section>
+        <p class="small reveal reveal-delay-4" style="text-align: center; margin-top: 1rem;">Hover over dots to explore competitor positioning</p>
+    </div>
+</section>
 
-    <!-- Quote -->
-    <section class="quote-section">
-        <div class="quote-mark reveal">"</div>
-        <p class="quote-text reveal reveal-delay-1">Never thought a healthy product could taste this good. This isn't compromise—it's what nutrition should be.</p>
-        <span class="quote-author reveal reveal-delay-2">Gustavo Bandeira</span>
-    </section>
+<!-- Solution -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">The Solution</span>
+        <h2 class="headline reveal reveal-delay-1">One ingredient.<br><span class="accent">Maximum absorption.</span></h2>
+        <div class="divider reveal"></div>
+        <p class="body-text reveal reveal-delay-2">100% grass-fed whey concentrate. Nothing else. Dry spray filtration preserves lactoferrin and immunoglobulins—bioactive compounds destroyed by intensive isolate processing. Your gut absorbs what it's designed to absorb.</p>
+    </div>
+</section>
 
-    <!-- Traction -->
-    <section class="statement">
-        <div class="section-content">
-            <span class="label reveal">Traction</span>
-            <h2 class="headline reveal reveal-delay-1">Demand is proven.</h2>
-            <div class="divider reveal reveal-delay-2"></div>
-            <div class="data-row reveal reveal-delay-3">
-                <div class="data-point">
-                    <div class="data-value">4.8</div>
-                    <div class="data-label">Star rating</div>
-                </div>
-                <div class="data-point">
-                    <div class="data-value">758</div>
-                    <div class="data-label">Five-star reviews</div>
-                </div>
-                <div class="data-point">
-                    <div class="data-value">61%</div>
-                    <div class="data-label">Gross margin</div>
+<!-- Products -->
+<section>
+    <div class="section-wide">
+        <span class="label reveal">Product Line</span>
+        <h2 class="headline reveal reveal-delay-1">Three products. Strong unit economics.</h2>
+        <div class="divider reveal"></div>
+
+        <div class="product-grid reveal reveal-delay-2">
+            <div class="product-card">
+                <div class="product-name">Whey Protein Concentrate</div>
+                <div class="product-price">€35</div>
+                <p class="small">Single ingredient, grass-fed, dry spray filtration. 25g protein per serving, lab verified.</p>
+                <div class="product-stats">
+                    <div>
+                        <div class="product-stat-label">Revenue (ex-VAT)</div>
+                        <div class="product-stat-value">€28.46</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">COGS</div>
+                        <div class="product-stat-value">€11.01</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">Gross Margin</div>
+                        <div class="product-stat-value accent">61%</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">Channel</div>
+                        <div class="product-stat-value">D2C Online</div>
+                    </div>
                 </div>
             </div>
-            <p class="body-text reveal reveal-delay-4" style="margin-top: 4rem; max-width: 550px;">Growth is constrained by marketing spend, not demand. The product-market fit is clear.</p>
-        </div>
-    </section>
-
-    <!-- Founder -->
-    <section>
-        <div class="section-wide">
-            <div class="two-col">
-                <div class="col-visual reveal">
-                    <span class="placeholder-text">Founder</span>
+            <div class="product-card">
+                <div class="product-name">Protein Cappuccino RTD</div>
+                <div class="product-price">€5</div>
+                <p class="small">Proprietary recipe. Served hot in retail locations. 300-1,000 drinks/week per location at scale.</p>
+                <div class="product-stats">
+                    <div>
+                        <div class="product-stat-label">Revenue (ex-VAT)</div>
+                        <div class="product-stat-value">€4.07</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">COGS</div>
+                        <div class="product-stat-value">€3.50 → €2.50</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">Gross Margin</div>
+                        <div class="product-stat-value accent">14% → 39%</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">Channel</div>
+                        <div class="product-stat-value">Retail / B2B</div>
+                    </div>
                 </div>
-                <div class="reveal reveal-delay-2">
-                    <span class="label">The founder</span>
-                    <h2 class="headline">William Kamar</h2>
-                    <p class="body-text" style="margin-top: 1.5rem; max-width: 450px;">Two decades researching what truly works for human health. ISSA certified. Obsessed with longevity. Mindful Crumb is the culmination of 10,000+ hours understanding metabolism, gut health, and nutrition science.</p>
-                    <div class="data-row" style="margin-top: 3rem;">
-                        <div class="data-point">
-                            <div class="data-value" style="font-size: 2rem;">20+</div>
-                            <div class="data-label">Years in nutrition</div>
+            </div>
+            <div class="product-card">
+                <div class="product-name">Crumb Balls</div>
+                <div class="product-price">€4</div>
+                <p class="small">Portable clean-label protein snacks. No artificial ingredients, no seed oils.</p>
+                <div class="product-stats">
+                    <div>
+                        <div class="product-stat-label">Revenue (ex-VAT)</div>
+                        <div class="product-stat-value">€3.25</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">COGS</div>
+                        <div class="product-stat-value">€2.12</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">Gross Margin</div>
+                        <div class="product-stat-value accent">35%</div>
+                    </div>
+                    <div>
+                        <div class="product-stat-label">Channel</div>
+                        <div class="product-stat-value">D2C / Retail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="small reveal reveal-delay-3" style="margin-top: 2rem;"><span class="accent">Coming soon:</span> Protein Brio — sourdough brioche with 24hr fermentation. Production partnership with Terracota by Daju.</p>
+    </div>
+</section>
+
+<!-- Traction -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">Traction</span>
+        <h2 class="headline reveal reveal-delay-1">Product-market fit is proven.</h2>
+        <div class="divider reveal"></div>
+        <div class="data-grid reveal reveal-delay-2">
+            <div class="data-item">
+                <div class="data-value accent">4.8</div>
+                <div class="data-label">Star rating across 758 reviews</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value accent">99%</div>
+                <div class="data-label">Loved the product in VARD pre-launch testing</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value accent">20%</div>
+                <div class="data-label">Repeat purchase rate (target: 30%+ with loyalty app)</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value accent">61%</div>
+                <div class="data-label">Gross margin on hero product</div>
+            </div>
+        </div>
+        <p class="body-text reveal reveal-delay-3" style="margin-top: 3rem; max-width: 500px;">Growth is constrained by marketing spend, not demand. With investment, we unlock the acquisition engine.</p>
+    </div>
+</section>
+
+<!-- Retail Strategy -->
+<section>
+    <div class="section-wide">
+        <span class="label reveal">Go-to-Market</span>
+        <h2 class="headline reveal reveal-delay-1">Flagship experience + wholesale distribution.</h2>
+        <div class="divider reveal"></div>
+
+        <div class="partner-grid reveal reveal-delay-2">
+            <div class="partner-card flagship">
+                <div class="partner-badge">Flagship Experience</div>
+                <div class="partner-name">Terracota by Daju</div>
+                <div class="partner-location">2 locations: Matosinhos + Foz, Porto</div>
+                <ul class="partner-features">
+                    <li><span class="feature-dot"></span>Full brand experience showcase</li>
+                    <li><span class="feature-dot"></span>Hot & cold protein drinks</li>
+                    <li><span class="feature-dot"></span>Clean baked goods (Protein Brio)</li>
+                    <li><span class="feature-dot"></span>Zero seed oils, zero artificial ingredients</li>
+                    <li><span class="feature-dot"></span>Diet-specific menu: Keto, Paleo, GF, DF, LF</li>
+                    <li><span class="feature-dot"></span>"Dining the future" positioning</li>
+                    <li><span class="feature-dot"></span>Target: 300+ drinks/week per location</li>
+                </ul>
+            </div>
+            <div class="partner-card">
+                <div class="partner-badge">Wholesale Partner</div>
+                <div class="partner-name">VARD + Expansion</div>
+                <div class="partner-location">Porto + 3 additional partners by M12</div>
+                <ul class="partner-features">
+                    <li><span class="feature-dot"></span>First order complete, 99% approval in testing</li>
+                    <li><span class="feature-dot"></span>RTD Cappuccino placement</li>
+                    <li><span class="feature-dot"></span>Lower control, broader reach</li>
+                    <li><span class="feature-dot"></span>Expansion: specialty coffee, gyms, wellness</li>
+                    <li><span class="feature-dot"></span>Target: 4+ retail partners by Month 12</li>
+                    <li><span class="feature-dot"></span>Cities: Porto → Lisbon → Algarve → Braga</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Customer Acquisition -->
+<section>
+    <div class="section-wide">
+        <span class="label reveal">Customer Acquisition</span>
+        <h2 class="headline reveal reveal-delay-1">Multi-channel flywheel.</h2>
+        <div class="divider reveal"></div>
+
+        <div class="flywheel-container reveal reveal-delay-2">
+            <div class="flywheel-section">
+                <div class="flywheel-title">Acquisition Engine</div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">DE</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Digital Elevation (Agency)</div>
+                        <div class="flywheel-desc">Dedicated 5-person team. Meta ads management, creative production, performance tracking. €2,000/mo scaling with revenue.</div>
+                        <div class="flywheel-cac">Target CAC: €35-50</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">IN</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Micro-Influencer Program</div>
+                        <div class="flywheel-desc">35 creators (5K-100K followers). Fitness, nutrition, wellness niche. 1 feed post + 3 stories each. UGC owned for ad repurposing.</div>
+                        <div class="flywheel-cac">Target CAC: €15-25 (organic-boosted)</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">AF</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Nutritionist Affiliates</div>
+                        <div class="flywheel-desc">15 certified nutritionists & health coaches. €100 welcome bonus + 10% ongoing commission. Trust-based recommendations.</div>
+                        <div class="flywheel-cac">Target CAC: €20-30 (commission on sale)</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">RT</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Retail Discovery</div>
+                        <div class="flywheel-desc">Walk-in at Terracota/partners → Taste → QR to loyalty app → Data capture. Foot traffic, no ad spend.</div>
+                        <div class="flywheel-cac">Target CAC: €5-10</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">PT</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">PT Referral Program</div>
+                        <div class="flywheel-desc">Target 30% of local PTs from boutique + high-end gyms. €50 credit per referred client. First-time user gift incentive.</div>
+                        <div class="flywheel-cac">Target CAC: €10-15</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flywheel-section">
+                <div class="flywheel-title">Retention Engine</div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">LA</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Loyalty App + Gamification</div>
+                        <div class="flywheel-desc">Points per purchase, streaks, challenges, leaderboards. Exclusive drops for top members. Community building.</div>
+                        <div class="flywheel-cac">Retention cost: €5-10 vs €35-50 new</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">EM</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Email/SMS Automation</div>
+                        <div class="flywheel-desc">Post-purchase education, reorder reminders, win-back sequences. Managed by Digital Elevation.</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-item">
+                    <div class="flywheel-icon">RT</div>
+                    <div class="flywheel-content">
+                        <div class="flywheel-name">Data-Driven Retargeting</div>
+                        <div class="flywheel-desc">App users → Custom audiences → Personalized offers. Lower CAC on warm audiences.</div>
+                    </div>
+                </div>
+
+                <div style="background: var(--faint); padding: 1.5rem; border-radius: 4px; margin-top: 2rem;">
+                    <div class="small" style="margin-bottom: 1rem; color: var(--beige);">Why Retention Matters</div>
+                    <div class="data-grid" style="margin-top: 0; gap: 1.5rem;">
+                        <div class="data-item">
+                            <div class="data-value" style="font-size: 1.5rem;">5-25x</div>
+                            <div class="data-label">Cheaper to retain than acquire</div>
                         </div>
-                        <div class="data-point">
-                            <div class="data-value" style="font-size: 2rem;">10K+</div>
-                            <div class="data-label">Research hours</div>
+                        <div class="data-item">
+                            <div class="data-value" style="font-size: 1.5rem;">67%</div>
+                            <div class="data-label">More spent by repeat customers</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-value" style="font-size: 1.5rem;">5.2x</div>
+                            <div class="data-label">Average loyalty program ROI</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Investment -->
-    <section class="investment-hero">
-        <span class="label reveal">The opportunity</span>
-        <div class="investment-amount reveal reveal-delay-1">€100K</div>
-        <p class="investment-terms reveal reveal-delay-2">for 20% equity</p>
+<!-- Investment Breakdown -->
+<section>
+    <div class="section-wide">
+        <span class="label reveal">Use of Funds</span>
+        <h2 class="headline reveal reveal-delay-1">€100,000 — every euro mapped.</h2>
+        <div class="divider reveal"></div>
 
-        <div class="allocation-grid reveal reveal-delay-3">
-            <div class="allocation-item">
-                <div class="allocation-value">€35-40K</div>
-                <div class="allocation-label">Marketing</div>
+        <div class="investment-breakdown reveal reveal-delay-2">
+            <div class="breakdown-category">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Marketing</span>
+                    <span class="breakdown-total">€38,000</span>
+                </div>
+                <div class="breakdown-items">
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Digital Elevation (12 months)</span>
+                        <span class="breakdown-item-value">€24,000</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">35 Micro-influencers</span>
+                        <span class="breakdown-item-value">€7,500</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Affiliate program setup</span>
+                        <span class="breakdown-item-value">€2,500</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Events & sampling (16 events)</span>
+                        <span class="breakdown-item-value">€4,000</span>
+                    </div>
+                </div>
             </div>
-            <div class="allocation-item">
-                <div class="allocation-value">€30K</div>
-                <div class="allocation-label">Inventory</div>
+
+            <div class="breakdown-category">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Inventory</span>
+                    <span class="breakdown-total">€30,000</span>
+                </div>
+                <div class="breakdown-items">
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Whey Protein (1,200 units)</span>
+                        <span class="breakdown-item-value">€13,200</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">RTD Cappuccino (3,500 units)</span>
+                        <span class="breakdown-item-value">€10,500</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Crumb Balls (2,500 units)</span>
+                        <span class="breakdown-item-value">€5,300</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Packaging & labels</span>
+                        <span class="breakdown-item-value">€1,000</span>
+                    </div>
+                </div>
             </div>
-            <div class="allocation-item">
-                <div class="allocation-value">€30K</div>
-                <div class="allocation-label">Operations</div>
+
+            <div class="breakdown-category">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Operations</span>
+                    <span class="breakdown-total">€32,000</span>
+                </div>
+                <div class="breakdown-items">
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Terracota setup (2 locations)</span>
+                        <span class="breakdown-item-value">€12,000</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Loyalty app development</span>
+                        <span class="breakdown-item-value">€8,000</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Wholesale partner setup</span>
+                        <span class="breakdown-item-value">€4,000</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">PT referral program</span>
+                        <span class="breakdown-item-value">€4,000</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-item-name">Fulfillment & logistics</span>
+                        <span class="breakdown-item-value">€4,000</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="outcomes-row reveal reveal-delay-4">
-            <div class="outcome-item">
-                <div class="outcome-value">30x</div>
-                <div class="outcome-label">Revenue growth in 18 months</div>
+        <p class="small reveal reveal-delay-3" style="margin-top: 2rem; text-align: center;">Inventory investment generates €69,500 potential revenue (2.3x return). Marketing targets 500+ new customers.</p>
+    </div>
+</section>
+
+<!-- Roadmap -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">18-Month Roadmap</span>
+        <h2 class="headline reveal reveal-delay-1">Clear milestones. Measurable outcomes.</h2>
+        <div class="divider reveal"></div>
+
+        <div class="timeline reveal reveal-delay-2">
+            <div class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Month 1-3</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Foundation</div>
+                    <div class="timeline-desc">Terracota Matosinhos + Foz launch. Digital Elevation onboard. 15 influencers activated. Loyalty app beta. PT referral program live.</div>
+                    <div class="timeline-metrics">
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value">€1,200</div>
+                            <div class="timeline-metric-label">Monthly revenue</div>
+                        </div>
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value">110</div>
+                            <div class="timeline-metric-label">Customers</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="outcome-item">
-                <div class="outcome-value">M12</div>
-                <div class="outcome-label">Path to profitability</div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Month 4-6</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Scale</div>
+                    <div class="timeline-desc">Paid ads launch with proven UGC. Remaining 20 influencers. 2 additional retail partners. App gamification features. 5 sampling events.</div>
+                    <div class="timeline-metrics">
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value">€2,440</div>
+                            <div class="timeline-metric-label">Monthly revenue</div>
+                        </div>
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value">200</div>
+                            <div class="timeline-metric-label">Customers</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="outcome-item">
-                <div class="outcome-value">€500K</div>
-                <div class="outcome-label">Post-money valuation</div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Month 7-12</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Expand</div>
+                    <div class="timeline-desc">Lisbon retail exploration. B2B gym pilot. Corporate wellness pilot. Retention campaigns driving 30%+ repeat. Algarve seasonal push.</div>
+                    <div class="timeline-metrics">
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value accent">€6,500</div>
+                            <div class="timeline-metric-label">Monthly revenue</div>
+                        </div>
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value accent">500</div>
+                            <div class="timeline-metric-label">Customers</div>
+                        </div>
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value accent">Break-even</div>
+                            <div class="timeline-metric-label">Milestone</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Month 13-18</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Optimize</div>
+                    <div class="timeline-desc">Scale proven channels. Braga expansion. 4 cities operational. Organic/SEO growth kicks in. Repeat rate: 30%+.</div>
+                    <div class="timeline-metrics">
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value accent">€12,200</div>
+                            <div class="timeline-metric-label">Monthly revenue</div>
+                        </div>
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value accent">1,000</div>
+                            <div class="timeline-metric-label">Customers</div>
+                        </div>
+                        <div class="timeline-metric">
+                            <div class="timeline-metric-value accent">30x</div>
+                            <div class="timeline-metric-label">Growth from today</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Final CTA -->
-    <section class="final-section">
-        <span class="label reveal">Join us</span>
-        <h2 class="headline reveal reveal-delay-1">Redefine nutrition<br>for longevity.</h2>
-        <a href="mailto:william@mindfulcrumb.com" class="cta-link reveal reveal-delay-2">Start the conversation</a>
-        <div class="contact-block reveal reveal-delay-3">
-            <p class="name">William Kamar</p>
-            <p>mindfulcrumb.com</p>
+<!-- Founder -->
+<section>
+    <div class="section-content">
+        <span class="label reveal">The Founder</span>
+        <h2 class="headline reveal reveal-delay-1">William Kamar</h2>
+        <div class="divider reveal"></div>
+        <p class="body-text reveal reveal-delay-2" style="max-width: 600px;">Two decades researching what truly works for human health. ISSA certified trainer. 10,000+ hours in nutrition science—metabolism, gut health, blood type diets, insulin resistance. Previous venture: VivaThrive (personalized meal planning). Mindful Crumb is the culmination of that knowledge.</p>
+        <div class="data-grid reveal reveal-delay-3" style="margin-top: 3rem;">
+            <div class="data-item">
+                <div class="data-value">20+</div>
+                <div class="data-label">Years in fitness & nutrition</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value">10K+</div>
+                <div class="data-label">Hours of research</div>
+            </div>
+            <div class="data-item">
+                <div class="data-value">€100K</div>
+                <div class="data-label">Personal capital invested</div>
+            </div>
         </div>
-    </section>
+        <p class="small reveal reveal-delay-4" style="margin-top: 2rem;">Supported by 2 business partners. Locations: Porto, Portugal | Las Vegas, NV</p>
+    </div>
+</section>
 
-    <footer>
-        <p>© 2025 Mindful Crumb · Porto, Portugal</p>
-    </footer>
+<!-- The Ask -->
+<section>
+    <div class="section-wide" style="text-align: center;">
+        <span class="label reveal">The Ask</span>
+        <div class="data-value reveal reveal-delay-1" style="font-size: clamp(4rem, 10vw, 8rem); color: var(--beige);">€100,000</div>
+        <p class="title reveal reveal-delay-2" style="color: var(--muted);">for 20% equity</p>
 
-    <script>
-        // Intersection Observer - Choreographed Reveals
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -80px 0px',
-            threshold: 0.15
-        };
+        <div class="data-grid reveal reveal-delay-3" style="max-width: 800px; margin: 4rem auto; justify-content: center;">
+            <div class="data-item" style="text-align: center;">
+                <div class="data-value">€500K</div>
+                <div class="data-label">Post-money valuation</div>
+            </div>
+            <div class="data-item" style="text-align: center;">
+                <div class="data-value">30x</div>
+                <div class="data-label">Revenue growth target</div>
+            </div>
+            <div class="data-item" style="text-align: center;">
+                <div class="data-value">M12</div>
+                <div class="data-label">Path to profitability</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+<!-- CTA -->
+<section class="cta-section">
+    <span class="label reveal">Join Us</span>
+    <h2 class="headline reveal reveal-delay-1" style="max-width: 600px;">Let's build the future of clean nutrition.</h2>
+    <a href="mailto:william@mindfulcrumb.com" class="cta-link reveal reveal-delay-2">Start the conversation</a>
+    <div class="reveal reveal-delay-3" style="margin-top: 4rem;">
+        <p style="font-size: 1rem; margin-bottom: 0.5rem;">William Kamar</p>
+        <p class="small">william@mindfulcrumb.com</p>
+        <p class="small">mindfulcrumb.com</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Mindful Crumb · Porto, Portugal</p>
+</footer>
+
+<script>
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Animate market bars
+                if (entry.target.querySelector('.market-bar-fill')) {
+                    entry.target.querySelectorAll('.market-bar-fill').forEach(bar => {
+                        setTimeout(() => bar.classList.add('animated'), 300);
+                    });
                 }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal, .divider').forEach(el => {
-            observer.observe(el);
+            }
         });
-    </script>
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, .divider').forEach(el => observer.observe(el));
+
+    // Counter animation for data values
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = 'true';
+                // Add subtle scale animation
+                entry.target.style.transform = 'scale(1.02)';
+                setTimeout(() => entry.target.style.transform = 'scale(1)', 300);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.data-value').forEach(el => counterObserver.observe(el));
+</script>
 
 </body>
 </html>
