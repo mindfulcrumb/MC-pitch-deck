@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mindful Crumb | Investor Deck</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -115,44 +116,53 @@
         .market-bar-values { display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.75rem; color: var(--muted); }
 
         /* Competitor Map - refined */
+        .competitor-map-wrapper { position: relative; width: 100%; max-width: 800px; margin: 4rem auto; }
         .competitor-map {
-            position: relative; width: 100%; max-width: 700px; aspect-ratio: 1.3;
-            margin: 4rem auto; background: var(--faint); border-radius: 8px;
+            position: relative; width: 100%; aspect-ratio: 1.4;
+            background: var(--faint); border-radius: 8px; overflow: hidden;
         }
         .map-axis-x, .map-axis-y { position: absolute; background: var(--subtle); }
         .map-axis-x { width: 100%; height: 1px; top: 50%; left: 0; }
         .map-axis-y { width: 1px; height: 100%; left: 50%; top: 0; }
-        .map-label { position: absolute; font-size: 0.55rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
-        .map-label.top { top: 1.5rem; left: 50%; transform: translateX(-50%); }
-        .map-label.bottom { bottom: 1.5rem; left: 50%; transform: translateX(-50%); }
-        .map-label.left { left: 1.5rem; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; }
-        .map-label.right { right: 1.5rem; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center; }
+        .map-label { position: absolute; font-size: 0.5rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; }
+        .map-label.top { top: 1rem; left: 50%; transform: translateX(-50%); }
+        .map-label.bottom { bottom: 1rem; left: 50%; transform: translateX(-50%); }
+        .map-label.left { left: 0.75rem; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; }
+        .map-label.right { right: 0.75rem; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center; }
         .competitor-dot {
-            position: absolute; width: 10px; height: 10px; border-radius: 50%;
+            position: absolute; width: 12px; height: 12px; border-radius: 50%;
             transform: translate(-50%, -50%); cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .competitor-dot:hover { transform: translate(-50%, -50%) scale(1.8); }
+        .competitor-dot:hover, .competitor-dot:focus, .competitor-dot.active { transform: translate(-50%, -50%) scale(1.6); }
         .competitor-dot.mc {
-            width: 28px; height: 28px;
+            width: 24px; height: 24px;
             background: var(--beige);
-            box-shadow: 0 0 40px var(--beige), 0 0 80px rgba(222,185,149,0.3);
+            box-shadow: 0 0 30px var(--beige), 0 0 60px rgba(222,185,149,0.3);
             animation: mcPulse 3s ease-in-out infinite;
         }
-        @keyframes mcPulse { 0%, 100% { box-shadow: 0 0 40px var(--beige), 0 0 80px rgba(222,185,149,0.3); } 50% { box-shadow: 0 0 60px var(--beige), 0 0 100px rgba(222,185,149,0.4); } }
-        .competitor-dot.other { background: rgba(239, 241, 230, 0.3); }
-        .competitor-dot.other:hover { background: var(--cream); }
-        .competitor-tooltip {
-            position: absolute; bottom: calc(100% + 15px); left: 50%; transform: translateX(-50%);
-            background: var(--black); border: 1px solid var(--subtle); padding: 1rem 1.25rem;
-            border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none;
-            transition: opacity 0.4s ease; font-size: 0.8rem; z-index: 10;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        @keyframes mcPulse { 0%, 100% { box-shadow: 0 0 30px var(--beige), 0 0 60px rgba(222,185,149,0.3); } 50% { box-shadow: 0 0 50px var(--beige), 0 0 80px rgba(222,185,149,0.4); } }
+        .competitor-dot.other {
+            background: rgba(239, 241, 230, 0.4);
+            animation: dotHint 2s ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
         }
-        .competitor-dot:hover .competitor-tooltip { opacity: 1; }
-        .tooltip-name { font-weight: 500; margin-bottom: 0.35rem; font-size: 0.85rem; }
-        .tooltip-detail { color: var(--muted); font-size: 0.7rem; line-height: 1.5; }
-        .mc-label { position: absolute; left: calc(85% + 40px); top: 25%; transform: translateY(-50%); font-size: 0.7rem; font-weight: 500; color: var(--beige); white-space: nowrap; letter-spacing: 0.05em; }
+        @keyframes dotHint { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } }
+        .competitor-dot.other:hover, .competitor-dot.other.active { background: var(--cream); animation: none; }
+        .competitor-tooltip {
+            position: absolute; bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+            background: var(--black); border: 1px solid var(--subtle); padding: 0.85rem 1rem;
+            border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease; font-size: 0.75rem; z-index: 10;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        .competitor-dot:hover .competitor-tooltip, .competitor-dot.active .competitor-tooltip { opacity: 1; }
+        .tooltip-name { font-weight: 500; margin-bottom: 0.25rem; font-size: 0.8rem; }
+        .tooltip-detail { color: var(--muted); font-size: 0.65rem; line-height: 1.4; }
+        .mc-label { display: none; }
+        .map-hint { text-align: center; margin-top: 1.5rem; font-size: 0.7rem; color: var(--muted); opacity: 0.7; }
+        .map-hint span { display: inline-block; animation: tapHint 1.5s ease-in-out infinite; }
+        @keyframes tapHint { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
         /* Product Cards - hero differentiation */
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
@@ -272,7 +282,11 @@
             .flywheel-container { grid-template-columns: 1fr; }
             .flywheel-connector { display: none; }
             .partner-grid { grid-template-columns: 1fr; }
-            .competitor-map { aspect-ratio: 1; max-width: 100%; }
+            .competitor-map { aspect-ratio: 1; }
+            .competitor-map-wrapper { max-width: 100%; padding: 0 1rem; }
+            .competitor-dot.mc { width: 20px; height: 20px; }
+            .competitor-dot.other { width: 14px; height: 14px; }
+            .competitor-tooltip { white-space: normal; max-width: 180px; left: auto; right: auto; }
             .product-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
@@ -395,58 +409,60 @@
         <div class="divider reveal"></div>
         <p class="body-text reveal reveal-delay-2">Major EU players compete on price and scale. None offer what conscious consumers demand: single-ingredient, grass-fed, additive-free protein with preserved bioactives.</p>
 
-        <div class="competitor-map reveal reveal-delay-3">
-            <div class="map-axis-x"></div>
-            <div class="map-axis-y"></div>
-            <span class="map-label top">Premium Price</span>
-            <span class="map-label bottom">Budget Price</span>
-            <span class="map-label left">Low Quality</span>
-            <span class="map-label right">High Quality</span>
+        <div class="competitor-map-wrapper reveal reveal-delay-3">
+            <div class="competitor-map">
+                <div class="map-axis-x"></div>
+                <div class="map-axis-y"></div>
+                <span class="map-label top">Premium</span>
+                <span class="map-label bottom">Budget</span>
+                <span class="map-label left">Low Quality</span>
+                <span class="map-label right">High Quality</span>
 
-            <!-- Competitors positioned by price (Y: top=premium) and quality (X: right=high) -->
-            <div class="competitor-dot other" style="left: 25%; top: 75%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name">MyProtein</div>
-                    <div class="tooltip-detail">UK · Mass market · No grass-fed · Additives</div>
+                <!-- Competitors positioned by price (Y: top=premium) and quality (X: right=high) -->
+                <div class="competitor-dot other" style="left: 25%; top: 75%; --delay: 0s;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name">MyProtein</div>
+                        <div class="tooltip-detail">UK · Mass market · No grass-fed · Additives</div>
+                    </div>
+                </div>
+                <div class="competitor-dot other" style="left: 30%; top: 70%; --delay: 0.3s;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name">Prozis</div>
+                        <div class="tooltip-detail">Portugal · Affordable · No grass-fed · Additives</div>
+                    </div>
+                </div>
+                <div class="competitor-dot other" style="left: 28%; top: 80%; --delay: 0.6s;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name">BioTech USA</div>
+                        <div class="tooltip-detail">Hungary · Budget · No grass-fed · Additives</div>
+                    </div>
+                </div>
+                <div class="competitor-dot other" style="left: 32%; top: 72%; --delay: 0.9s;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name">Bulk</div>
+                        <div class="tooltip-detail">UK · Value-focused · No grass-fed · Additives</div>
+                    </div>
+                </div>
+                <div class="competitor-dot other" style="left: 55%; top: 35%; --delay: 0.2s;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name">Foodspring</div>
+                        <div class="tooltip-detail">Germany · Premium · Grass-fed · Still uses additives</div>
+                    </div>
+                </div>
+                <div class="competitor-dot other" style="left: 48%; top: 45%; --delay: 0.5s;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name">ESN</div>
+                        <div class="tooltip-detail">Germany · Quality-focused · Some grass-fed SKUs · Additives</div>
+                    </div>
+                </div>
+                <div class="competitor-dot mc" style="left: 82%; top: 22%;">
+                    <div class="competitor-tooltip">
+                        <div class="tooltip-name" style="color: var(--beige);">Mindful Crumb</div>
+                        <div class="tooltip-detail">Portugal · Premium clean-label<br>100% Grass-fed · Zero additives</div>
+                    </div>
                 </div>
             </div>
-            <div class="competitor-dot other" style="left: 30%; top: 70%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name">Prozis</div>
-                    <div class="tooltip-detail">Portugal · Affordable · No grass-fed · Additives</div>
-                </div>
-            </div>
-            <div class="competitor-dot other" style="left: 28%; top: 80%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name">BioTech USA</div>
-                    <div class="tooltip-detail">Hungary · Budget · No grass-fed · Additives</div>
-                </div>
-            </div>
-            <div class="competitor-dot other" style="left: 32%; top: 72%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name">Bulk</div>
-                    <div class="tooltip-detail">UK · Value-focused · No grass-fed · Additives</div>
-                </div>
-            </div>
-            <div class="competitor-dot other" style="left: 55%; top: 35%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name">Foodspring</div>
-                    <div class="tooltip-detail">Germany · Premium · Grass-fed · Still uses additives</div>
-                </div>
-            </div>
-            <div class="competitor-dot other" style="left: 48%; top: 45%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name">ESN</div>
-                    <div class="tooltip-detail">Germany · Quality-focused · Some grass-fed SKUs · Additives</div>
-                </div>
-            </div>
-            <div class="competitor-dot mc" style="left: 85%; top: 25%;">
-                <div class="competitor-tooltip">
-                    <div class="tooltip-name" style="color: var(--beige);">Mindful Crumb</div>
-                    <div class="tooltip-detail">Portugal · Premium clean-label<br>100% Grass-fed · Zero additives · Bioactives preserved</div>
-                </div>
-            </div>
-            <span class="mc-label">Mindful Crumb</span>
+            <p class="map-hint"><span>Tap circles to explore competitors</span></p>
         </div>
     </div>
 </section>
@@ -1005,6 +1021,56 @@
     }, { threshold: 0.5 });
 
     document.querySelectorAll('.data-value').forEach(el => counterObserver.observe(el));
+
+    // Touch support for competitor dots on mobile
+    const competitorDots = document.querySelectorAll('.competitor-dot');
+    let activeDot = null;
+
+    competitorDots.forEach(dot => {
+        dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const tooltip = this.querySelector('.competitor-tooltip');
+
+            // If this dot is already active, hide it
+            if (activeDot === this) {
+                tooltip.style.opacity = '0';
+                tooltip.style.visibility = 'hidden';
+                activeDot = null;
+                return;
+            }
+
+            // Hide any previously active tooltip
+            if (activeDot) {
+                const prevTooltip = activeDot.querySelector('.competitor-tooltip');
+                prevTooltip.style.opacity = '0';
+                prevTooltip.style.visibility = 'hidden';
+            }
+
+            // Show this tooltip
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+            activeDot = this;
+        });
+    });
+
+    // Hide tooltip when clicking elsewhere
+    document.addEventListener('click', function() {
+        if (activeDot) {
+            const tooltip = activeDot.querySelector('.competitor-tooltip');
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+            activeDot = null;
+        }
+    });
+
+    // Hide hint after first interaction
+    const mapHint = document.querySelector('.map-hint');
+    if (mapHint) {
+        competitorDots.forEach(dot => {
+            dot.addEventListener('mouseenter', () => mapHint.style.opacity = '0', { once: true });
+            dot.addEventListener('click', () => mapHint.style.opacity = '0', { once: true });
+        });
+    }
 </script>
 
 </body>
