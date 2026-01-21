@@ -668,7 +668,7 @@
         }
     </style>
 </head>
-<body>
+<body class="gate-active">
 
 <!-- Password Gate -->
 <div class="password-gate" id="passwordGate">
@@ -1571,10 +1571,8 @@
     if (sessionStorage.getItem('mc_authenticated') === 'true') {
         gate.classList.add('hidden');
         document.body.classList.remove('gate-active');
-    } else {
-        // Lock body scroll and hide content until authenticated
-        document.body.classList.add('gate-active');
     }
+    // Otherwise gate-active is already set in HTML - no flash of content
 
     gateForm.addEventListener('submit', function(e) {
         e.preventDefault();
