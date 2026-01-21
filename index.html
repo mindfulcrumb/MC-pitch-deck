@@ -86,9 +86,9 @@
 
         /* Hero - dramatic entrance */
         #hero { text-align: center; align-items: center; min-height: 100vh; }
-        #hero .display { margin-bottom: 2rem; }
-        #hero .display br { display: none; } /* Single line for impact */
+        #hero .display { margin-bottom: 2rem; white-space: nowrap; }
         #hero .subhead { max-width: 500px; margin: 0 auto; }
+        #hero .tagline { white-space: nowrap; }
         .scroll-cue {
             position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%);
             display: flex; flex-direction: column; align-items: center; gap: 1rem;
@@ -309,6 +309,8 @@
         @media (max-width: 600px) {
             .timeline { grid-template-columns: 1fr; }
             section { padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 3rem); }
+            #hero .display { font-size: clamp(2rem, 8vw, 3.5rem); }
+            #hero .tagline { font-size: 0.7rem; letter-spacing: 0.08em; }
             .competitor-dot.mc { width: 20px; height: 20px; }
             .competitor-dot.other { width: 14px; height: 14px; }
             .map-label { font-size: 0.45rem; }
@@ -327,9 +329,9 @@
 <!-- Hero -->
 <section id="hero">
     <span class="label reveal">Investor Overview</span>
-    <h1 class="display reveal reveal-delay-1">Snacking in the<br><span class="accent">Future.</span></h1>
+    <h1 class="display reveal reveal-delay-1">Snacking in the <span class="accent">Future.</span></h1>
     <p class="subhead reveal reveal-delay-2">Clean-label protein for the gut-conscious generation.</p>
-    <p class="small reveal reveal-delay-3" style="margin-top: 2rem; letter-spacing: 0.1em;">Zero seed oils · Zero artificial · Maximum absorption</p>
+    <p class="small tagline reveal reveal-delay-3" style="margin-top: 2rem; letter-spacing: 0.1em;">Zero seed oils · Zero artificial · Maximum absorption</p>
     <div class="scroll-cue">
         <div class="scroll-line"></div>
     </div>
