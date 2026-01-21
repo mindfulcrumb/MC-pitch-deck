@@ -43,6 +43,13 @@
         .accent { color: var(--beige); }
 
         /* Password Gate */
+        body.gate-active {
+            overflow: hidden;
+            height: 100vh;
+        }
+        body.gate-active > *:not(.password-gate) {
+            visibility: hidden;
+        }
         .password-gate {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -1563,6 +1570,10 @@
     // Check if already authenticated
     if (sessionStorage.getItem('mc_authenticated') === 'true') {
         gate.classList.add('hidden');
+        document.body.classList.remove('gate-active');
+    } else {
+        // Lock body scroll and hide content until authenticated
+        document.body.classList.add('gate-active');
     }
 
     gateForm.addEventListener('submit', function(e) {
@@ -1572,6 +1583,7 @@
         if (password === GATE_PASSWORD) {
             // Success - unlock
             sessionStorage.setItem('mc_authenticated', 'true');
+            document.body.classList.remove('gate-active');
             gate.classList.add('unlocked');
             setTimeout(() => gate.classList.add('hidden'), 800);
         } else {
