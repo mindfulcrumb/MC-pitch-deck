@@ -606,6 +606,22 @@
             border: 1px dashed var(--beige);
             background: transparent;
         }
+        .map-marker.potential .map-marker-dot {
+            opacity: 0.15;
+            border: 1px dotted rgba(222,185,149,0.3);
+            background: transparent;
+            width: 8px;
+            height: 8px;
+        }
+        .map-marker.potential .map-marker-label {
+            opacity: 0.4;
+            font-size: 0.65rem;
+        }
+        .legend-dot.potential {
+            opacity: 0.15;
+            border: 1px dotted rgba(222,185,149,0.5);
+            background: transparent;
+        }
         .map-marker-label {
             position: absolute;
             top: calc(100% + 8px);
@@ -1233,21 +1249,68 @@
             </div>
         </div>
 
-        <!-- Expansion Map -->
+        <!-- Expansion Map - Full Europe -->
         <div class="expansion-map-container reveal reveal-delay-3">
-            <p class="expansion-map-title">Iberian Expansion Map</p>
-            <div class="expansion-map">
-                <!-- SVG Map outline of Iberian Peninsula -->
-                <svg viewBox="0 0 400 340" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
-                    <path d="M50,60 Q80,40 140,35 Q200,25 260,40 Q320,50 360,90 Q380,130 370,180 Q360,230 340,260 Q300,300 240,310 Q180,320 120,300 Q80,280 60,240 Q40,200 35,150 Q30,100 50,60 Z"
-                          fill="none" stroke="rgba(222,185,149,0.15)" stroke-width="1"/>
-                    <!-- Portugal border hint -->
-                    <path d="M50,60 Q60,100 55,150 Q50,200 60,240 Q70,270 90,290"
-                          fill="none" stroke="rgba(222,185,149,0.25)" stroke-width="1" stroke-dasharray="4,4"/>
+            <p class="expansion-map-title">European Expansion Strategy</p>
+            <div class="expansion-map" style="height: 500px;">
+                <!-- Full Europe SVG Map -->
+                <svg viewBox="0 0 800 600" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                    <defs>
+                        <linearGradient id="iberian-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(222,185,149,0.15)"/>
+                            <stop offset="100%" style="stop-color:rgba(222,185,149,0.05)"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Scandinavia (Norway, Sweden, Finland) -->
+                    <path d="M380,20 Q400,40 420,80 Q430,120 425,160 Q420,180 400,200 L390,180 Q395,150 390,120 Q385,80 370,50 Q360,30 380,20 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+                    <path d="M425,30 Q450,50 460,100 Q465,150 455,200 Q450,220 440,240 L430,220 Q435,180 430,140 Q425,100 425,30 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+                    <path d="M465,40 Q520,60 550,120 Q560,180 540,220 L520,200 Q530,160 520,120 Q500,80 465,40 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+
+                    <!-- UK & Ireland -->
+                    <path d="M240,140 Q260,130 280,140 Q300,160 295,200 Q285,240 260,260 Q240,270 230,250 Q220,220 230,180 Q235,160 240,140 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+                    <path d="M200,160 Q220,150 230,170 Q235,200 220,220 Q200,235 190,215 Q185,190 200,160 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+
+                    <!-- France -->
+                    <path d="M260,280 Q300,260 350,270 Q380,290 370,340 Q350,400 300,420 Q250,430 230,390 Q220,340 260,280 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+
+                    <!-- Germany, Poland, Czech -->
+                    <path d="M360,200 Q420,180 480,200 Q500,250 480,300 Q450,320 400,310 Q360,300 350,260 Q345,220 360,200 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+
+                    <!-- Italy -->
+                    <path d="M380,340 Q400,330 420,350 Q430,380 420,420 Q400,480 380,520 Q365,530 360,500 Q370,450 375,400 Q378,360 380,340 Z"
+                          fill="none" stroke="rgba(222,185,149,0.08)" stroke-width="0.5"/>
+
+                    <!-- Eastern Europe (simplified) -->
+                    <path d="M500,180 Q580,160 640,200 Q660,260 640,340 Q600,400 540,380 Q500,350 490,290 Q485,230 500,180 Z"
+                          fill="none" stroke="rgba(222,185,149,0.06)" stroke-width="0.5"/>
+
+                    <!-- Greece & Balkans -->
+                    <path d="M480,380 Q520,360 550,400 Q560,450 530,490 Q500,510 480,480 Q470,440 480,380 Z"
+                          fill="none" stroke="rgba(222,185,149,0.06)" stroke-width="0.5"/>
+
+                    <!-- IBERIAN PENINSULA - Highlighted -->
+                    <!-- Spain -->
+                    <path d="M140,340 Q200,300 280,310 Q340,330 350,380 Q345,440 300,480 Q240,510 170,490 Q120,460 110,400 Q115,360 140,340 Z"
+                          fill="url(#iberian-glow)" stroke="rgba(222,185,149,0.4)" stroke-width="1.5"/>
+                    <!-- Portugal -->
+                    <path d="M110,340 Q130,320 140,340 L115,360 Q110,400 120,440 Q125,470 140,490 L120,500 Q100,470 95,420 Q90,370 110,340 Z"
+                          fill="url(#iberian-glow)" stroke="rgba(222,185,149,0.5)" stroke-width="1.5"/>
+
+                    <!-- Connection lines from Portugal to future markets -->
+                    <line x1="115" y1="370" x2="260" y2="300" stroke="rgba(222,185,149,0.1)" stroke-width="1" stroke-dasharray="4,6"/>
+                    <line x1="115" y1="370" x2="400" y2="350" stroke="rgba(222,185,149,0.06)" stroke-width="1" stroke-dasharray="4,6"/>
                 </svg>
 
                 <!-- Porto HQ - with stores -->
-                <div class="map-marker hq" style="left: 18%; top: 32%;">
+                <div class="map-marker hq" style="left: 12.5%; top: 62%;">
                     <div class="map-marker-dot"></div>
                     <div class="map-marker-label">
                         Porto (HQ)
@@ -1256,33 +1319,39 @@
                 </div>
 
                 <!-- Braga -->
-                <div class="map-marker active" style="left: 22%; top: 22%;">
+                <div class="map-marker active" style="left: 14%; top: 57%;">
                     <div class="map-marker-dot"></div>
                     <div class="map-marker-label">Braga</div>
                 </div>
 
                 <!-- Lisbon -->
-                <div class="map-marker active" style="left: 12%; top: 58%;">
+                <div class="map-marker active" style="left: 11%; top: 73%;">
                     <div class="map-marker-dot"></div>
                     <div class="map-marker-label">Lisbon</div>
                 </div>
 
                 <!-- Algarve -->
-                <div class="map-marker active" style="left: 18%; top: 82%;">
+                <div class="map-marker active" style="left: 14%; top: 82%;">
                     <div class="map-marker-dot"></div>
                     <div class="map-marker-label">Algarve</div>
                 </div>
 
                 <!-- Madrid -->
-                <div class="map-marker future" style="left: 52%; top: 50%;">
+                <div class="map-marker future" style="left: 26%; top: 68%;">
                     <div class="map-marker-dot"></div>
                     <div class="map-marker-label">Madrid</div>
                 </div>
 
                 <!-- Barcelona -->
-                <div class="map-marker future" style="left: 78%; top: 30%;">
+                <div class="map-marker future" style="left: 35%; top: 58%;">
                     <div class="map-marker-dot"></div>
                     <div class="map-marker-label">Barcelona</div>
+                </div>
+
+                <!-- Future market indicators (subtle) -->
+                <div class="map-marker potential" style="left: 38%; top: 52%;">
+                    <div class="map-marker-dot"></div>
+                    <div class="map-marker-label">France</div>
                 </div>
             </div>
 
@@ -1297,7 +1366,11 @@
                 </div>
                 <div class="map-legend-item">
                     <div class="legend-dot future"></div>
-                    <span>Future (Year 2+)</span>
+                    <span>Year 2+ (Spain)</span>
+                </div>
+                <div class="map-legend-item">
+                    <div class="legend-dot potential"></div>
+                    <span>Future Vision</span>
                 </div>
             </div>
         </div>
