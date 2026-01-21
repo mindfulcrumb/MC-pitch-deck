@@ -53,7 +53,8 @@
             align-items: center;
             justify-content: center;
             opacity: 1;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
+            overflow: hidden;
         }
         .password-gate.unlocked {
             opacity: 0;
@@ -62,67 +63,173 @@
         }
         .password-gate.hidden { display: none; }
 
-        /* Water Drop Animation */
-        .water-drop {
-            width: 60px;
-            height: 80px;
-            position: relative;
-            margin-bottom: 3rem;
-            animation: dropFall 1.5s ease-in-out;
-        }
-        .water-drop::before {
-            content: '';
+        /* Ambient floating particles */
+        .gate-particles {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--beige) 0%, rgba(222,185,149,0.6) 100%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transform: rotate(45deg);
-            box-shadow: 0 0 40px rgba(222,185,149,0.4), inset 0 -10px 20px rgba(255,255,255,0.1);
+            top: 0; left: 0; right: 0; bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
         }
-        .water-drop::after {
-            content: '';
+        .particle {
             position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, var(--beige) 0%, rgba(222,185,149,0.8) 100%);
-            border-radius: 0 50% 50% 50%;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--beige) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 8s ease-in-out infinite;
         }
-        @keyframes dropFall {
-            0% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
-            60% { transform: translateY(0) scale(1); opacity: 1; }
-            75% { transform: translateY(-20px) scale(1.05); }
-            100% { transform: translateY(0) scale(1); }
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 7s; }
+        .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 1s; animation-duration: 9s; }
+        .particle:nth-child(3) { left: 30%; top: 40%; animation-delay: 2s; animation-duration: 6s; }
+        .particle:nth-child(4) { left: 40%; top: 60%; animation-delay: 0.5s; animation-duration: 8s; }
+        .particle:nth-child(5) { left: 50%; top: 30%; animation-delay: 1.5s; animation-duration: 7s; }
+        .particle:nth-child(6) { left: 60%; top: 70%; animation-delay: 2.5s; animation-duration: 9s; }
+        .particle:nth-child(7) { left: 70%; top: 50%; animation-delay: 0.8s; animation-duration: 6s; }
+        .particle:nth-child(8) { left: 80%; top: 25%; animation-delay: 1.8s; animation-duration: 8s; }
+        .particle:nth-child(9) { left: 90%; top: 85%; animation-delay: 3s; animation-duration: 7s; }
+        .particle:nth-child(10) { left: 15%; top: 55%; animation-delay: 2.2s; animation-duration: 9s; }
+        .particle:nth-child(11) { left: 85%; top: 45%; animation-delay: 0.3s; animation-duration: 6s; }
+        .particle:nth-child(12) { left: 45%; top: 15%; animation-delay: 1.2s; animation-duration: 8s; }
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+            10% { opacity: 0.6; }
+            50% { transform: translateY(-100px) translateX(20px) scale(1.5); opacity: 0.3; }
+            90% { opacity: 0.6; }
         }
 
-        /* Ripple effect */
-        .ripple {
-            position: absolute;
-            width: 100px;
-            height: 20px;
-            border-radius: 50%;
-            border: 1px solid var(--beige);
-            opacity: 0;
-            animation: rippleOut 1.5s ease-out 1s forwards;
+        /* Converging crumbs animation */
+        .gate-visual {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 3rem;
         }
-        .ripple:nth-child(2) { animation-delay: 1.2s; }
-        .ripple:nth-child(3) { animation-delay: 1.4s; }
-        @keyframes rippleOut {
-            0% { transform: scale(0.5); opacity: 0.8; }
-            100% { transform: scale(3); opacity: 0; }
+        .crumb {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--beige);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            opacity: 0;
+            box-shadow: 0 0 20px rgba(222,185,149,0.8), 0 0 40px rgba(222,185,149,0.4);
+        }
+        .crumb:nth-child(1) { animation: converge1 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards; }
+        .crumb:nth-child(2) { animation: converge2 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards; }
+        .crumb:nth-child(3) { animation: converge3 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards; }
+        .crumb:nth-child(4) { animation: converge4 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards; }
+        .crumb:nth-child(5) { animation: converge5 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards; }
+        .crumb:nth-child(6) { animation: converge6 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards; }
+        .crumb:nth-child(7) { animation: converge7 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s forwards; }
+        .crumb:nth-child(8) { animation: converge8 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s forwards; }
+
+        @keyframes converge1 {
+            0% { top: -100px; left: -50px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(360deg); }
+        }
+        @keyframes converge2 {
+            0% { top: -80px; left: 250px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(-360deg); }
+        }
+        @keyframes converge3 {
+            0% { top: 300px; left: -80px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(270deg); }
+        }
+        @keyframes converge4 {
+            0% { top: 280px; left: 280px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(-270deg); }
+        }
+        @keyframes converge5 {
+            0% { top: -120px; left: 100px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+        @keyframes converge6 {
+            0% { top: 320px; left: 100px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(-180deg); }
+        }
+        @keyframes converge7 {
+            0% { top: 100px; left: -100px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(450deg); }
+        }
+        @keyframes converge8 {
+            0% { top: 100px; left: 300px; opacity: 0; transform: scale(0.3) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { top: 96px; left: 96px; opacity: 1; transform: scale(1) rotate(-450deg); }
+        }
+
+        /* Logo reveal after convergence */
+        .gate-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: logoReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) 2.2s forwards;
+        }
+        .gate-logo img {
+            height: 50px;
+            filter: invert(1) brightness(0.95);
+        }
+        @keyframes logoReveal {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); filter: blur(10px); }
+            50% { filter: blur(0); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0); }
+        }
+
+        /* Golden ring pulse */
+        .gate-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            border: 1px solid var(--beige);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            animation: ringPulse 2s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
+        }
+        .gate-ring:nth-child(2) { animation-delay: 2.15s; }
+        .gate-ring:nth-child(3) { animation-delay: 2.3s; }
+        @keyframes ringPulse {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            30% { opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+        }
+
+        /* Radial glow behind logo */
+        .gate-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(222,185,149,0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            animation: glowExpand 2s cubic-bezier(0.4, 0, 0.2, 1) 1.8s forwards;
+        }
+        @keyframes glowExpand {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
         .gate-content {
             text-align: center;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s ease 1.8s forwards;
+            transform: translateY(30px);
+            animation: contentReveal 1s cubic-bezier(0.4, 0, 0.2, 1) 3s forwards;
         }
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes contentReveal {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         .gate-title {
             font-size: 0.65rem;
@@ -131,6 +238,11 @@
             text-transform: uppercase;
             color: var(--beige);
             margin-bottom: 2rem;
+            opacity: 0;
+            animation: textFade 0.8s ease 3.2s forwards;
+        }
+        @keyframes textFade {
+            to { opacity: 1; }
         }
         .gate-input-wrap {
             position: relative;
@@ -139,8 +251,8 @@
         .gate-input {
             width: 280px;
             padding: 1rem 1.5rem;
-            background: var(--faint);
-            border: 1px solid var(--subtle);
+            background: rgba(222,185,149,0.03);
+            border: 1px solid rgba(222,185,149,0.2);
             border-radius: 4px;
             color: var(--cream);
             font-family: inherit;
@@ -148,7 +260,7 @@
             text-align: center;
             letter-spacing: 0.1em;
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .gate-input::placeholder {
             color: var(--muted);
@@ -156,16 +268,17 @@
         }
         .gate-input:focus {
             border-color: var(--beige);
-            box-shadow: 0 0 20px rgba(222,185,149,0.15);
+            box-shadow: 0 0 30px rgba(222,185,149,0.2), inset 0 0 20px rgba(222,185,149,0.05);
+            background: rgba(222,185,149,0.05);
         }
         .gate-input.error {
             border-color: #e74c3c;
-            animation: shake 0.5s ease;
+            animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
         }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+            20%, 40%, 60%, 80% { transform: translateX(8px); }
         }
         .gate-submit {
             padding: 1rem 3rem;
@@ -177,11 +290,25 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .gate-submit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(222,185,149,0.3), transparent);
+            transition: left 0.5s ease;
         }
         .gate-submit:hover {
             background: var(--beige);
             color: var(--black);
+            box-shadow: 0 0 40px rgba(222,185,149,0.4);
+        }
+        .gate-submit:hover::before {
+            left: 100%;
         }
         .gate-error {
             margin-top: 1rem;
@@ -542,11 +669,47 @@
 
 <!-- Password Gate -->
 <div class="password-gate" id="passwordGate">
-    <div class="water-drop">
-        <div class="ripple"></div>
-        <div class="ripple"></div>
-        <div class="ripple"></div>
+    <!-- Ambient floating particles -->
+    <div class="gate-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
+
+    <!-- Converging crumbs visual -->
+    <div class="gate-visual">
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+        <div class="crumb"></div>
+
+        <!-- Glow effect -->
+        <div class="gate-glow"></div>
+
+        <!-- Expanding rings -->
+        <div class="gate-ring"></div>
+        <div class="gate-ring"></div>
+        <div class="gate-ring"></div>
+
+        <!-- Logo reveal -->
+        <div class="gate-logo">
+            <img src="MC Horizontal Black.png" alt="Mindful Crumb">
+        </div>
+    </div>
+
     <div class="gate-content">
         <p class="gate-title">Investor Access</p>
         <form id="gateForm">
