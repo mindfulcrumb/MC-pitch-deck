@@ -142,9 +142,10 @@
         /* Larger touch target for mobile */
         .competitor-dot::before {
             content: ''; position: absolute;
-            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            top: -15px; left: -15px; right: -15px; bottom: -15px;
+            border-radius: 50%;
         }
-        .competitor-dot:hover, .competitor-dot:focus, .competitor-dot.active { transform: translate(-50%, -50%) scale(1.6); }
+        .competitor-dot:hover, .competitor-dot:focus, .competitor-dot.active { transform: translate(-50%, -50%) scale(1.6); z-index: 20; }
         .competitor-dot.mc {
             width: 24px; height: 24px;
             background: var(--beige);
@@ -440,37 +441,37 @@
                 <span class="map-label right">High Quality</span>
 
                 <!-- Competitors positioned by price (Y: top=premium) and quality (X: right=high) -->
-                <div class="competitor-dot other" style="left: 25%; top: 75%; --delay: 0s;">
+                <div class="competitor-dot other" style="left: 18%; top: 72%; --delay: 0s;">
                     <div class="competitor-tooltip">
                         <div class="tooltip-name">MyProtein</div>
                         <div class="tooltip-detail">UK · Mass market · No grass-fed · Additives</div>
                     </div>
                 </div>
-                <div class="competitor-dot other" style="left: 30%; top: 70%; --delay: 0.3s;">
+                <div class="competitor-dot other" style="left: 35%; top: 62%; --delay: 0.3s;">
                     <div class="competitor-tooltip">
                         <div class="tooltip-name">Prozis</div>
                         <div class="tooltip-detail">Portugal · Affordable · No grass-fed · Additives</div>
                     </div>
                 </div>
-                <div class="competitor-dot other" style="left: 28%; top: 80%; --delay: 0.6s;">
+                <div class="competitor-dot other" style="left: 22%; top: 85%; --delay: 0.6s;">
                     <div class="competitor-tooltip">
                         <div class="tooltip-name">BioTech USA</div>
                         <div class="tooltip-detail">Hungary · Budget · No grass-fed · Additives</div>
                     </div>
                 </div>
-                <div class="competitor-dot other" style="left: 32%; top: 72%; --delay: 0.9s;">
+                <div class="competitor-dot other" style="left: 40%; top: 78%; --delay: 0.9s;">
                     <div class="competitor-tooltip">
                         <div class="tooltip-name">Bulk</div>
                         <div class="tooltip-detail">UK · Value-focused · No grass-fed · Additives</div>
                     </div>
                 </div>
-                <div class="competitor-dot other" style="left: 55%; top: 35%; --delay: 0.2s;">
+                <div class="competitor-dot other" style="left: 58%; top: 32%; --delay: 0.2s;">
                     <div class="competitor-tooltip">
                         <div class="tooltip-name">Foodspring</div>
                         <div class="tooltip-detail">Germany · Premium · Grass-fed · Still uses additives</div>
                     </div>
                 </div>
-                <div class="competitor-dot other" style="left: 48%; top: 45%; --delay: 0.5s;">
+                <div class="competitor-dot other" style="left: 45%; top: 48%; --delay: 0.5s;">
                     <div class="competitor-tooltip">
                         <div class="tooltip-name">ESN</div>
                         <div class="tooltip-detail">Germany · Quality-focused · Some grass-fed SKUs · Additives</div>
