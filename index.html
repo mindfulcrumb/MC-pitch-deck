@@ -99,7 +99,6 @@
             margin-bottom: 2.5rem;
             color: var(--cream);
             position: relative;
-            overflow: hidden;
         }
         #hero .display .accent { color: var(--beige); }
         #hero .subhead {
@@ -108,37 +107,43 @@
             opacity: 0.5;
             font-weight: 300;
             letter-spacing: 0.02em;
+            white-space: nowrap;
         }
 
-        /* Apple-style light sweep - single beam, left to right */
+        /* Apple-style shimmer - gradient mask animation */
         .light-sweep {
             position: relative;
             display: inline-block;
+            color: var(--cream);
         }
-        .light-sweep::after {
-            content: '';
+        .light-sweep::before {
+            content: 'Snacking in the Future';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 60%;
+            left: 0;
+            width: 100%;
             height: 100%;
             background: linear-gradient(
-                90deg,
+                120deg,
                 transparent 0%,
-                rgba(255, 255, 255, 0) 20%,
-                rgba(255, 255, 255, 0.15) 50%,
-                rgba(255, 255, 255, 0) 80%,
+                transparent 25%,
+                rgba(255, 255, 255, 0.3) 45%,
+                rgba(255, 255, 255, 0.5) 50%,
+                rgba(255, 255, 255, 0.3) 55%,
+                transparent 75%,
                 transparent 100%
             );
-            animation: lightBeam 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            animation-delay: 2s;
-            pointer-events: none;
+            background-size: 250% 100%;
+            background-position: 100% 0;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 2s ease-in-out forwards;
+            animation-delay: 1.5s;
         }
-        @keyframes lightBeam {
-            0% { left: -60%; opacity: 0; }
-            5% { opacity: 1; }
-            95% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
+        @keyframes shimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
         }
         .scroll-cue {
             position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%);
@@ -361,7 +366,8 @@
             .timeline { grid-template-columns: 1fr; }
             section { padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 3rem); }
             #hero .display { font-size: clamp(2.2rem, 9vw, 3.5rem); }
-            #hero .subhead { font-size: 0.95rem; }
+            #hero .subhead { font-size: 0.95rem; white-space: normal; }
+            .light-sweep::before { content: none; } /* disable shimmer on mobile */
             .competitor-dot.mc { width: 20px; height: 20px; }
             .competitor-dot.other { width: 14px; height: 14px; }
             .map-label { font-size: 0.45rem; }
@@ -379,12 +385,18 @@
 
 <!-- Hero -->
 <section id="hero">
-    <h1 class="display light-sweep reveal">Snacking in the <span class="accent">Future</span></h1>
-    <p class="subhead reveal reveal-delay-1">Clean-label protein for the gut-conscious generation</p>
+    <span class="label reveal" style="margin-bottom: 3rem;">Investor Overview</span>
+    <h1 class="display light-sweep reveal reveal-delay-1">Snacking in the <span class="accent">Future</span></h1>
+    <p class="subhead reveal reveal-delay-2">Clean-label protein for the gut-conscious generation</p>
     <div class="scroll-cue">
         <div class="scroll-line"></div>
     </div>
 </section>
+
+<!-- Value Props Banner -->
+<div style="background: var(--faint); padding: 2.5rem; text-align: center; border-top: 1px solid var(--subtle); border-bottom: 1px solid var(--subtle);">
+    <p style="font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); opacity: 0.7;">Zero seed oils · Zero artificial · Maximum absorption</p>
+</div>
 
 <!-- Problem -->
 <section>
