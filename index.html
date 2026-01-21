@@ -34,7 +34,12 @@
 
         /* Typography - more generous sizing */
         .display { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 200; letter-spacing: -0.05em; line-height: 0.95; }
-        .headline { font-size: clamp(2.25rem, 5vw, 4.5rem); font-weight: 200; letter-spacing: -0.03em; line-height: 1.05; }
+        .headline { font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 200; letter-spacing: -0.03em; line-height: 1.1; }
+        .headline .mobile-break { display: none; }
+        @media (max-width: 768px) {
+            .headline { font-size: clamp(1.8rem, 7vw, 2.5rem); line-height: 1.15; }
+            .headline .mobile-break { display: inline; }
+        }
         .title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
         .subhead { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 300; line-height: 1.6; color: var(--muted); }
         .body-text { font-size: clamp(1rem, 1.2vw, 1.15rem); font-weight: 300; line-height: 1.9; color: var(--muted); }
@@ -837,7 +842,7 @@
 <section>
     <div class="section-content">
         <span class="label reveal">The Problem</span>
-        <h2 class="headline reveal reveal-delay-1">The protein industry prioritizes shelf life over your life.</h2>
+        <h2 class="headline reveal reveal-delay-1">The protein industry<br class="mobile-break"> prioritizes shelf life<br class="mobile-break"> over your life.</h2>
         <div class="divider reveal"></div>
         <p class="body-text reveal reveal-delay-2" style="max-width: 600px;">Seed oils cause inflammation. Artificial sweeteners disrupt gut microbiome. Gums and fillers compromise absorption. Consumers are forced to choose: healthy but bland, or tasty but toxic.</p>
         <div class="data-grid reveal reveal-delay-3">
@@ -861,7 +866,7 @@
 <section>
     <div class="section-content">
         <span class="label reveal">Market Opportunity</span>
-        <h2 class="headline reveal reveal-delay-1">A $100B+ market in clean-label revolution.</h2>
+        <h2 class="headline reveal reveal-delay-1">A $100B+ market<br class="mobile-break"> in clean-label revolution.</h2>
         <div class="divider reveal"></div>
         <div class="market-bars reveal reveal-delay-2">
             <div class="market-bar-item">
@@ -1001,7 +1006,7 @@
 <section>
     <div class="section-wide">
         <span class="label reveal">Product Line</span>
-        <h2 class="headline reveal reveal-delay-1">Three products. Strong unit economics.</h2>
+        <h2 class="headline reveal reveal-delay-1">Three products.<br class="mobile-break"> Strong unit economics.</h2>
         <div class="divider reveal"></div>
 
         <div class="product-grid reveal reveal-delay-2">
@@ -1154,7 +1159,7 @@
 <section>
     <div class="section-content">
         <span class="label reveal">Financial Snapshot</span>
-        <h2 class="headline reveal reveal-delay-1">€0.4K today. <span class="accent">€12K in 18 months.</span></h2>
+        <h2 class="headline reveal reveal-delay-1">€0.4K today.<br class="mobile-break"> <span class="accent">€12K in 18 months.</span></h2>
         <div class="divider reveal"></div>
 
         <div class="data-grid reveal reveal-delay-2" style="text-align: center;">
@@ -1196,7 +1201,7 @@
 <section>
     <div class="section-wide">
         <span class="label reveal">Go-to-Market</span>
-        <h2 class="headline reveal reveal-delay-1">Flagship experience + wholesale distribution.</h2>
+        <h2 class="headline reveal reveal-delay-1">Flagship experience +<br class="mobile-break"> wholesale distribution.</h2>
         <div class="divider reveal"></div>
 
         <div class="partner-grid reveal reveal-delay-2">
@@ -1224,7 +1229,7 @@
                     <li><span class="feature-dot"></span>Lower control, broader reach</li>
                     <li><span class="feature-dot"></span>Expansion: specialty coffee, gyms, wellness</li>
                     <li><span class="feature-dot"></span>Target: 4+ retail partners by Month 12</li>
-                    <li><span class="feature-dot"></span>Cities: Porto → Lisbon → Algarve → Braga</li>
+                    <li><span class="feature-dot"></span>Cities: Porto → Braga → Lisbon → Algarve</li>
                 </ul>
             </div>
         </div>
@@ -1381,7 +1386,7 @@
 <section>
     <div class="section-wide">
         <span class="label reveal">Use of Funds</span>
-        <h2 class="headline reveal reveal-delay-1">€150,000 — every euro mapped.</h2>
+        <h2 class="headline reveal reveal-delay-1">€150,000 —<br class="mobile-break"> every euro mapped.</h2>
         <div class="divider reveal"></div>
 
         <div class="investment-breakdown reveal reveal-delay-2">
@@ -1477,7 +1482,7 @@
 <section>
     <div class="section-content">
         <span class="label reveal">18-Month Roadmap</span>
-        <h2 class="headline reveal reveal-delay-1">Clear milestones. Measurable outcomes.</h2>
+        <h2 class="headline reveal reveal-delay-1">Clear milestones.<br class="mobile-break"> Measurable outcomes.</h2>
         <div class="divider reveal"></div>
 
         <div class="timeline reveal reveal-delay-2">
@@ -1708,7 +1713,7 @@
 <!-- CTA -->
 <section id="cta" class="cta-section" style="min-height: 80vh;">
     <span class="label reveal">Join Us</span>
-    <h2 class="headline reveal reveal-delay-1" style="margin-bottom: 3rem;">Let's build the future<br>of clean nutrition.</h2>
+    <h2 class="headline reveal reveal-delay-1" style="margin-bottom: 3rem;">Let's build the future<br class="mobile-break"> of clean nutrition.</h2>
     <a href="https://wa.me/351910130107" target="_blank" class="cta-link reveal reveal-delay-2">Start the conversation</a>
 </section>
 
