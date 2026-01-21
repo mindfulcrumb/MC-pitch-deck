@@ -441,11 +441,13 @@
         }
         .product-card:hover { background: var(--subtle); transform: translateY(-4px); }
         .product-img {
-            width: 120px;
-            height: 120px;
+            width: 100%;
+            aspect-ratio: 1;
             object-fit: contain;
-            margin: 0 auto 1.5rem;
-            display: block;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
         }
         .product-card.hero {
             background: linear-gradient(135deg, rgba(222,185,149,0.12) 0%, var(--faint) 100%);
