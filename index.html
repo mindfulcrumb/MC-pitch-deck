@@ -36,9 +36,11 @@
         .display { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 200; letter-spacing: -0.05em; line-height: 0.95; }
         .headline { font-size: clamp(2.25rem, 5vw, 4.5rem); font-weight: 200; letter-spacing: -0.03em; line-height: 1.1; }
         .headline .mobile-break { display: none; }
+        .headline .nowrap { white-space: nowrap; }
         @media (max-width: 768px) {
             .headline { font-size: clamp(1.8rem, 7vw, 2.5rem); line-height: 1.15; }
             .headline .mobile-break { display: inline; }
+            .headline .nowrap { white-space: normal; }
         }
         .title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
         .subhead { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 300; line-height: 1.6; color: var(--muted); }
@@ -842,7 +844,7 @@
 <section>
     <div class="section-content">
         <span class="label reveal">The Problem</span>
-        <h2 class="headline reveal reveal-delay-1">The protein industry<br class="mobile-break"> prioritizes shelf life<br> over your life.</h2>
+        <h2 class="headline reveal reveal-delay-1"><span class="nowrap">The protein industry<br class="mobile-break"> prioritizes shelf life</span><br> over your life.</h2>
         <div class="divider reveal"></div>
         <p class="body-text reveal reveal-delay-2" style="max-width: 600px;">Seed oils cause inflammation. Artificial sweeteners disrupt gut microbiome. Gums and fillers compromise absorption. Consumers are forced to choose: healthy but bland, or tasty but toxic.</p>
         <div class="data-grid reveal reveal-delay-3">
