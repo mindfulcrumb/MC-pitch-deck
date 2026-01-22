@@ -34,10 +34,10 @@
 
         /* Typography - more generous sizing */
         .display { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 200; letter-spacing: -0.05em; line-height: 0.95; }
-        .headline { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 200; letter-spacing: -0.03em; line-height: 1.1; }
+        .headline { font-size: clamp(2.25rem, 5vw, 4.5rem); font-weight: 200; letter-spacing: -0.03em; line-height: 1.05; white-space: nowrap; }
         .headline .mobile-break { display: none; }
         @media (max-width: 768px) {
-            .headline { font-size: clamp(1.8rem, 7vw, 2.5rem); line-height: 1.15; }
+            .headline { font-size: clamp(1.8rem, 7vw, 2.5rem); line-height: 1.15; white-space: normal; }
             .headline .mobile-break { display: inline; }
         }
         .title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
